@@ -1,0 +1,13 @@
+.brand {
+  position: absolute;
+  $size: 40px;
+  top: 5px;
+  left: 5px;
+  display: inline-block;
+  background: #2d2d2d url('../../containers/Home/logo.png') no-repeat center center;
+  width: $size;
+  height: $size;
+  background-size: 80%;
+  margin: 0 10px 0 0;
+  border-radius: $size / 2;
+}

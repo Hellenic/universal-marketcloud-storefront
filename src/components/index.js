@@ -11,3 +11,5 @@ export InfoBar from './InfoBar/InfoBar';
 export MiniInfoBar from './MiniInfoBar/MiniInfoBar';
 export SurveyForm from './SurveyForm/SurveyForm';
 export WidgetForm from './WidgetForm/WidgetForm';
+export NavigationBar from './NavigationBar/NavigationBar';
+export Footer from './Footer/Footer';
