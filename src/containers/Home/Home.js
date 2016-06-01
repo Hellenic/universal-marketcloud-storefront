@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { CounterButton, GithubButton } from 'components';
+import { GithubButton } from 'components';
 import config from '../../config';
 import Helmet from 'react-helmet';
 
@@ -39,12 +39,6 @@ export default class Home extends Component {
         </div>
 
         <div className="container">
-          <div className={styles.counterContainer}>
-            <CounterButton multireducerKey="counter1"/>
-            <CounterButton multireducerKey="counter2"/>
-            <CounterButton multireducerKey="counter3"/>
-          </div>
-
           <p>
             Here is a link to another page <Link to="/survey">Survey page</Link>
           </p>

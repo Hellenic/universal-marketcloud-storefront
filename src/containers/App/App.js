@@ -7,6 +7,13 @@ import { InfoBar, NavigationBar, Footer } from 'components';
 import { push } from 'react-router-redux';
 import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import './App.scss';
+
+// Note! Temporary plugin for Material UI
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 @asyncConnect([{
   promise: ({store: {dispatch, getState}}) => {
@@ -56,17 +63,19 @@ export default class App extends Component {
     const {user} = this.props;
 
     return (
-      <div>
-        <Helmet {...config.app.head}/>
-        <NavigationBar user={user} onLogout={this.handleLogout} />
+      <MuiThemeProvider muiTheme={getMuiTheme()}>
+        <div>
+          <Helmet {...config.app.head}/>
+          <NavigationBar user={user} onLogout={this.handleLogout} />
 
-        <div style={{ margin: '50px 0' }}>
-          {this.props.children}
+          <div style={{ margin: '50px 0' }}>
+            {this.props.children}
+          </div>
+
+          <InfoBar />
+          <Footer />
         </div>
-
-        <InfoBar />
-        <Footer />
-      </div>
+      </MuiThemeProvider>
     );
   }
 }
