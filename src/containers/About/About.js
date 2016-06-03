@@ -18,15 +18,10 @@ export default class About extends Component {
         <h1>About Us</h1>
         <Helmet title="About Us"/>
 
-        <p>This project was originally created by Hannu Kärkkäinen
-          (<a href="https://twitter.com/hkarkk" target="_blank">@hkarkk</a>), but has since seen many contributions
-          from the open source community. Thank you to <a
-            href="https://github.com/hellenic/universal-marketcloud-storefront/graphs/contributors"
-            target="_blank">all the contributors</a>.
-        </p>
+        <p>This project was originally created by Hannu Kärkkäinen (<a href="https://twitter.com/hkarkk" target="_blank">@hkarkk</a>).</p>
         <p>
           Project is based on awesome
-          <a href="https://github.com/erikras/react-redux-universal-hot-example" target="_blank">react-redux-universal</a>
+          <a href="https://github.com/erikras/react-redux-universal-hot-example" target="_blank">react-redux-universal</a> 
           boilerplate by <a href="https://twitter.com/erikras" target="_blank">@erikras</a>.
           You can read from there what's actually contained in this project as well.
         </p>

@@ -12,4 +12,5 @@ export WidgetForm from './WidgetForm/WidgetForm';
 
 export LandingBanner from './LandingBanner/LandingBanner';
 export NavigationBar from './NavigationBar/NavigationBar';
+export ProductGrid from './ProductGrid/ProductGrid';
 export Footer from './Footer/Footer';

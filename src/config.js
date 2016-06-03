@@ -14,6 +14,10 @@ module.exports = Object.assign({
   port: process.env.PORT,
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT,
+  marketcloud: {
+    publicKey: 'c21274a7-d13b-41e3-b875-c848909aa648',
+    secretKey: '1aIi8W14Dw9IKxgmhXTz3Xh5w6rZZYkQgooE0w6hZuE='
+  },
   app: {
     title: 'Universal Marketcloud Storefront',
     description: 'All the modern best practices in one eCommerce storefront.',
