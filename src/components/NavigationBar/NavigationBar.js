@@ -9,8 +9,6 @@ import config from '../../config';
 // import styles from './NavigationBar.scss';
 
 const NavigationBar = () => {
-  // const {user, onLogout} = props;
-
   return (
     <AppBar
       title={<IndexLink to="/">{config.app.title}</IndexLink>}
@@ -19,11 +17,6 @@ const NavigationBar = () => {
       iconElementLeft={<MenuDrawer />}
       iconElementRight={<ActionButtons />} />
   );
-};
-
-NavigationBar.propTypes = {
-  user: React.PropTypes.string,
-  onLogout: React.PropTypes.func.isRequired
 };
 
 export default NavigationBar;

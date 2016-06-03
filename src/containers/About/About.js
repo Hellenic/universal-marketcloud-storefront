@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
-import { MiniInfoBar } from 'components';
 
 export default class About extends Component {
 
@@ -21,19 +20,12 @@ export default class About extends Component {
         <p>This project was originally created by Hannu Kärkkäinen (<a href="https://twitter.com/hkarkk" target="_blank">@hkarkk</a>).</p>
         <p>
           Project is based on awesome
-          <a href="https://github.com/erikras/react-redux-universal-hot-example" target="_blank">react-redux-universal</a> 
+          <a href="https://github.com/erikras/react-redux-universal-hot-example" target="_blank">react-redux-universal</a>
           boilerplate by <a href="https://twitter.com/erikras" target="_blank">@erikras</a>.
           You can read from there what's actually contained in this project as well.
         </p>
-        <h3>Mini Bar <span style={{color: '#aaa'}}>(not that kind)</span></h3>
-
-        <p>Hey! You found the mini info bar! The following component is display-only. Note that it shows the same
-          time as the info bar.</p>
-
-        <MiniInfoBar/>
 
         <h3>Images</h3>
-
         <p>
           Psst! Would you like to see a kitten?
 
