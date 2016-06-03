@@ -68,7 +68,7 @@ export default class App extends Component {
           <Helmet {...config.app.head}/>
           <NavigationBar user={user} onLogout={this.handleLogout} />
 
-          <div style={{ margin: '50px 0' }}>
+          <div>
             {this.props.children}
           </div>
 
