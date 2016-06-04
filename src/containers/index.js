@@ -1,5 +1,6 @@
 export App from './App/App';
 export Chat from './Chat/Chat';
+export Cart from './Cart/Cart';
 export Home from './Home/Home';
 export About from './About/About';
 export FAQ from './FAQ/FAQ';
