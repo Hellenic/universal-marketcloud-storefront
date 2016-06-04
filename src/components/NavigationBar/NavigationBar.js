@@ -13,6 +13,7 @@ import Divider from 'material-ui/Divider';
 
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import Person from 'material-ui/svg-icons/social/person';
+import Home from 'material-ui/svg-icons/action/home';
 import Question from 'material-ui/svg-icons/action/question-answer';
 import HelpOutline from 'material-ui/svg-icons/action/help-outline';
 
@@ -72,7 +73,11 @@ export default class NavigationBar extends Component {
           iconElementRight={<ActionButtons />} />
 
         <Drawer docked={false} open={isOpen} onRequestChange={set}>
+          <MenuItem leftIcon={<Home />} onTouchTap={this.goto.bind(this, '/')} primaryText="Home" />
+          <Divider />
           <MenuItem leftIcon={<Question />} onTouchTap={this.goto.bind(this, '/survey')} primaryText="Survey" />
+          <MenuItem leftIcon={<HelpOutline />} onTouchTap={this.goto.bind(this, '/faq')} primaryText="FAQ" />
+          <MenuItem leftIcon={<HelpOutline />} onTouchTap={this.goto.bind(this, '/contact')} primaryText="Contact Us" />
           <MenuItem leftIcon={<HelpOutline />} onTouchTap={this.goto.bind(this, '/about')} primaryText="About Us" />
           <Divider />
           {!auth && <MenuItem leftIcon={<Person />} onTouchTap={this.goto.bind(this, '/login')} primaryText="Login" />}

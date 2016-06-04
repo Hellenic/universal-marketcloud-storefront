@@ -6,6 +6,8 @@ import {
     Chat,
     Home,
     About,
+    FAQ,
+    Contact,
     Login,
     LoginSuccess,
     Survey,
@@ -46,8 +48,10 @@ export default (store) => {
 
       { /* Routes */ }
       <Route path="about" component={About}/>
-      <Route path="login" component={Login}/>
+      <Route path="faq" component={FAQ}/>
+      <Route path="contact" component={Contact}/>
       <Route path="survey" component={Survey}/>
+      <Route path="login" component={Login}/>
 
       { /* Catch all route */ }
       <Route path="*" component={NotFound} status={404} />

@@ -16,18 +16,20 @@ export default class ProductGrid extends Component {
     const {products} = this.props;
     return (
       <div className={styles.container}>
-        <GridList cellHeight={200} className={styles.list}>
+        <GridList cellHeight={300} cols={4} className={styles.list}>
           <Subheader>Products</Subheader>
           {
-            products.map(product => (
-              <GridTile
-                key={product.id}
-                title={product.name}
-                subtitle={<span>by <b>Katja</b></span>}
-                actionIcon={<IconButton><StarBorder color="white" /></IconButton>}>
-                <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150" />
-              </GridTile>
-            ))
+            products.map(product => {
+              return (
+                <GridTile
+                  key={product.id}
+                  title={product.name}
+                  subtitle={<span>by <b>Katja</b></span>}
+                  actionIcon={<IconButton><StarBorder color="white" /></IconButton>}>
+                  <img src={product.images[0]} />
+                </GridTile>
+              );
+            })
           }
         </GridList>
       </div>
