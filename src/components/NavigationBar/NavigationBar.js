@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { logout } from 'redux/modules/auth';
 import { open, close, set } from 'redux/modules/drawer';
+import { display as displaySnack } from 'redux/modules/snackbar';
 
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
@@ -20,7 +21,8 @@ import ActionButtons from './ActionButtons';
 import config from '../../config';
 import styles from './NavigationBar.scss';
 
-@connect(state => ({ auth: state.auth.user, isOpen: state.drawer.open }), { pushState: push, logout, open, close, set })
+// TODO It might be wise to further separate session handling from the navigation.
+@connect(state => ({ auth: state.auth.user, isOpen: state.drawer.open }), { pushState: push, logout, open, close, set, displaySnack })
 export default class NavigationBar extends Component {
   static propTypes = {
     auth: PropTypes.object,
@@ -28,8 +30,23 @@ export default class NavigationBar extends Component {
     open: PropTypes.func.isRequired,
     close: PropTypes.func.isRequired,
     set: PropTypes.func.isRequired,
+    displaySnack: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
     pushState: PropTypes.func.isRequired
+  }
+
+  // Display Snackbar and redirect on login / logout
+  componentWillReceiveProps(nextProps) {
+    // Login in progress
+    if (!this.props.auth && nextProps.auth) {
+      this.props.displaySnack('You have signed in!', 4000);
+      this.props.pushState('/loginSuccess');
+    }
+    // Logging out
+    else if (this.props.auth && !nextProps.auth) {
+      this.props.displaySnack('You have signed out!', 4000);
+      this.props.pushState('/');
+    }
   }
 
   logout(event) {

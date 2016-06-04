@@ -14,11 +14,11 @@ export default function reducer(state = initialState, action = {}) {
       };
     case CLOSED:
       return {
-        open: false,
+        open: false
       };
     case SET:
       return {
-        open: action.open,
+        open: action.open
       };
     default:
       return state;

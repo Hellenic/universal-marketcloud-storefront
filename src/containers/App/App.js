@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { isLoaded as isProductsLoaded, load as loadProducts } from 'redux/modules/products';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
+import { handleRequestClose } from 'redux/modules/snackbar';
 import { NavigationBar, Footer } from 'components';
-import { push } from 'react-router-redux';
 import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -30,39 +30,21 @@ injectTapEventPlugin();
     return Promise.all(promises);
   }
 }])
-@connect(state => ({user: state.auth.user}), {pushState: push})
+@connect(state => ({ snackbar: state.snackbar }), { handleRequestClose })
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
-    user: PropTypes.object,
-    pushState: PropTypes.func.isRequired
+    snackbar: PropTypes.object.isRequired,
+    handleRequestClose: PropTypes.func.isRequired,
   };
 
   static contextTypes = {
     store: PropTypes.object.isRequired
   };
-  state = {
-    open: false,
-    toastText: ''
-  }
-
-  // TODO Should the above user logic be in Navigation where the buttons are?
-  // TODO Attach this to redux as well
-  componentWillReceiveProps(nextProps) {
-    // Login in progress
-    if (!this.props.user && nextProps.user) {
-      this.setState({ open: true, toastText: 'You have signed in!' });
-      this.props.pushState('/loginSuccess');
-    }
-    // Logging out
-    else if (this.props.user && !nextProps.user) {
-      this.setState({ open: true, toastText: 'You have signed out!' });
-      this.props.pushState('/');
-    }
-  }
-  handleRequestClose = () => this.setState({open: false});
 
   render() {
+    const { snackbar, handleRequestClose } = this.props;
+
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div>
@@ -74,8 +56,8 @@ export default class App extends Component {
           </div>
 
           <Footer />
-          <Snackbar open={this.state.open} autoHideDuration={3000}
-            message={this.state.toastText} onRequestClose={this.handleRequestClose} />
+          <Snackbar open={snackbar.visible} autoHideDuration={snackbar.duration}
+            message={snackbar.text} onRequestClose={handleRequestClose} />
         </div>
       </MuiThemeProvider>
     );
