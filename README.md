@@ -2,11 +2,13 @@
 
 TODO Put shields here.
 
+## Under contruction!
+
 ---
 
 ## About
 
-This is an univesal eCommerce boilerplate (mostly for Marketcloud) I've put together using the following technologies:
+This is an universal eCommerce boilerplate (mostly for Marketcloud) I've put together using the following technologies:
 
 * [Universal](https://medium.com/@mjackson/universal-javascript-4761051b7ae9) rendering
 * Both client and server make calls to load data from separate API server
