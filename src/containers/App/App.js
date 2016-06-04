@@ -46,6 +46,8 @@ export default class App extends Component {
     toastText: ''
   }
 
+  // TODO Should the above user logic be in Navigation where the buttons are?
+  // TODO Attach this to redux as well
   componentWillReceiveProps(nextProps) {
     // Login in progress
     if (!this.props.user && nextProps.user) {
@@ -61,9 +63,6 @@ export default class App extends Component {
   handleRequestClose = () => this.setState({open: false});
 
   render() {
-    // TODO Should the above user logic be in Navigation where the buttons are?
-    // const {user} = this.props;
-
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <div>

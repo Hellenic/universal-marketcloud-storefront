@@ -18,7 +18,8 @@
     "no-console": 0,
     "no-alert": 0,
     "no-trailing-spaces": 0,
-    "brace-style": 0
+    "brace-style": 0,
+    "no-shadow": 0
   },
   "plugins": [
     "react", "import"
