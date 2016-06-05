@@ -3,6 +3,11 @@ import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import * as authActions from 'redux/modules/auth';
 
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
+import { Header } from 'components';
+import styles from './Login.scss';
+
 @connect(state => ({user: state.auth.user}), authActions)
 export default class Login extends Component {
   static propTypes = {
@@ -13,38 +18,35 @@ export default class Login extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const input = this.refs.username;
-    this.props.login(input.value);
-    input.value = '';
+    // const input = this.refs.username;
+    // this.props.login(input.value);
+    // input.value = '';
   }
 
   render() {
-    const {user, logout} = this.props;
-    const styles = require('./Login.scss');
-    return (
-      <div className={styles.loginPage + ' container'}>
-        <Helmet title="Login"/>
-        <h1>Login</h1>
-        {!user &&
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <div>
-              <input type="text" ref="username" placeholder="Enter a username" />
-            </div>
-            <button onClick={this.handleSubmit}><i className="fa fa-sign-in"/>{' '}Log In</button>
-          </form>
-          <p>This will "log you in" as this user, storing the username in the session of the API server.</p>
-        </div>
-        }
-        {user &&
-        <div>
-          <p>You are currently logged in as {user.name}.</p>
+    const { user, logout } = this.props;
 
-          <div>
-            <button className="btn btn-danger" onClick={logout}><i className="fa fa-sign-out"/>{' '}Log Out</button>
-          </div>
+    return (
+      <div>
+        <Helmet title="Login" />
+        <Header title="Login" />
+
+        <div className={styles.container}>
+          {!user &&
+            <div>
+              <TextField id="login-user" name="username" hintText="Username" />
+              <TextField id="login-pass" name="password" type="password" hintText="Password" />
+              <FlatButton label="Login" primary onTouchTap={this.handleSubmit} />
+            </div>
+          }
+
+          {user &&
+            <div>
+              <p>You are currently logged in as {user.name}.</p>
+              <FlatButton label="Log out" primary onTouchTap={logout} />
+            </div>
+          }
         </div>
-        }
       </div>
     );
   }

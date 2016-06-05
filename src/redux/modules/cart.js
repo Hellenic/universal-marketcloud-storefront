@@ -1,4 +1,9 @@
+import Marketcloud from 'marketcloud-node';
+import config from '../../config';
+
 const ADD = 'app/cart/ADD';
+const ADD_SUCCESS = 'app/cart/ADD_SUCCESS';
+const ADD_FAIL = 'app/cart/ADD_FAIL';
 const REMOVE = 'app/cart/REMOVE';
 const UPDATE = 'app/cart/UPDATE';
 
@@ -26,15 +31,25 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
-export function add(id) {
-  console.log('TODO Add', id);
-  return { type: ADD, id };
+export function add(productId, quantity = 1) {
+  // TODO I believe it would be cleaner if I make new ApiClient for Marketcloud
+  const marketcloud = new Marketcloud.Client({
+    public_key: config.marketcloud.publicKey,
+    secret_key: config.marketcloud.secretKey
+  });
+
+  return {
+    types: [ADD, ADD_SUCCESS, ADD_FAIL],
+    promise: () => marketcloud.carts.create({
+      items: [{ product_id: productId, quantity: quantity }]
+    })
+  };
 }
 
-export function remove(id) {
-  return { type: REMOVE, id };
+export function remove(itemId) {
+  return { type: REMOVE, itemId };
 }
 
-export function update(id, quantity) {
-  return { type: UPDATE, id, quantity };
+export function update(itemId, quantity) {
+  return { type: UPDATE, itemId, quantity };
 }

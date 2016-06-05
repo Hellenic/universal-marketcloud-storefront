@@ -6,6 +6,7 @@
  */
 export SurveyForm from './SurveyForm/SurveyForm';
 
+export Header from './Header/Header';
 export LandingBanner from './LandingBanner/LandingBanner';
 export NavigationBar from './NavigationBar/NavigationBar';
 export ProductGrid from './ProductGrid/ProductGrid';

@@ -21,7 +21,7 @@ export default class ProductGrid extends Component {
     const tooltip = hasStock ? `Add one ${product.name} to cart.` : `${product.name} is out of stock`;
     return (
       <IconButton disabled={!hasStock}
-        onTouchTap={this.props.add}
+        onTouchTap={this.props.add.bind(this, product.id)}
         tooltip={<span>{tooltip}</span>} tooltipPosition="top-left"
         >
         <AddShoppingCart color="white" />
