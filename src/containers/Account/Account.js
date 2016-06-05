@@ -3,16 +3,16 @@ import Helmet from 'react-helmet';
 import Subheader from 'material-ui/Subheader';
 import { Header, Container } from 'components';
 
-export default class FAQ extends Component {
+export default class Account extends Component {
 
   render() {
     return (
       <div>
-        <Helmet title="FAQ"/>
-        <Header title="FAQ" />
+        <Helmet title="Account"/>
+        <Header title="Account" />
 
         <Container>
-          <Subheader>Questions & answers will be gathered here.</Subheader>
+          <Subheader>Your account details will be here.</Subheader>
         </Container>
       </div>
     );

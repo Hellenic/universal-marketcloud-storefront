@@ -34,6 +34,5 @@ export function hide() {
 }
 
 export function handleRequestClose() {
-  console.log('Close');
   return { type: HIDE };
 }

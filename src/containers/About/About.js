@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
+import Subheader from 'material-ui/Subheader';
+import { Header, Container } from 'components';
 
 export default class About extends Component {
 
@@ -13,29 +15,29 @@ export default class About extends Component {
     const {showKitten} = this.state;
     const kitten = require('./kitten.jpg');
     return (
-      <div className="container">
-        <h1>About Us</h1>
+      <div>
         <Helmet title="About Us"/>
+        <Header title="About Us" />
 
-        <p>This project was originally created by Hannu Kärkkäinen (<a href="https://twitter.com/hkarkk" target="_blank">@hkarkk</a>).</p>
-        <p>
-          Project is based on awesome
-          <a href="https://github.com/erikras/react-redux-universal-hot-example" target="_blank">react-redux-universal</a>
-          boilerplate by <a href="https://twitter.com/erikras" target="_blank">@erikras</a>.
-          You can read from there what's actually contained in this project as well.
-        </p>
+        <Container>
+          <p>This project was originally created by Hannu Kärkkäinen (<a href="https://twitter.com/hkarkk" target="_blank">@hkarkk</a>).</p>
+          <p>
+            Project is based on
+            awesome <a href="https://github.com/erikras/react-redux-universal-hot-example" target="_blank">react-redux-universal</a> boilerplate
+            by <a href="https://twitter.com/erikras" target="_blank">@erikras</a>.
+            You can read from there what's actually contained in this project as well.
+          </p>
 
-        <h3>Images</h3>
-        <p>
-          Psst! Would you like to see a kitten?
+          <Subheader>Kitten</Subheader>
+          <p>
+            Psst! Would you like to see a kitten?
+            <button style={{marginLeft: 30}} onClick={this.handleToggleKitten}>
+              {showKitten ? 'No! Take it away!' : 'Yes! Please!'}
+            </button>
+          </p>
 
-          <button className={'btn btn-' + (showKitten ? 'danger' : 'success')}
-                  style={{marginLeft: 50}}
-                  onClick={this.handleToggleKitten}>
-            {showKitten ? 'No! Take it away!' : 'Yes! Please!'}</button>
-        </p>
-
-        {showKitten && <div><img src={kitten}/></div>}
+          {showKitten && <div><img src={kitten}/></div>}
+        </Container>
       </div>
     );
   }

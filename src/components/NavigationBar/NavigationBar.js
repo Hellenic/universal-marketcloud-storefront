@@ -15,10 +15,11 @@ import Divider from 'material-ui/Divider';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import Person from 'material-ui/svg-icons/social/person';
 import Home from 'material-ui/svg-icons/action/home';
-import Question from 'material-ui/svg-icons/action/question-answer';
 import HelpOutline from 'material-ui/svg-icons/action/help-outline';
 import ShoppingCart from 'material-ui/svg-icons/action/shopping-cart';
 import Favorite from 'material-ui/svg-icons/action/favorite';
+import Forum from 'material-ui/svg-icons/communication/forum';
+import Business from 'material-ui/svg-icons/communication/business';
 
 import config from '../../config';
 import theme from '../../theme/mui-theme';
@@ -44,7 +45,7 @@ export default class NavigationBar extends Component {
     // Login in progress
     if (!this.props.auth && nextProps.auth) {
       this.props.displaySnack('You have signed in!', 4000);
-      this.props.pushState('/loginSuccess');
+      this.props.pushState('/');
     }
     // Logging out
     else if (this.props.auth && !nextProps.auth) {
@@ -65,14 +66,17 @@ export default class NavigationBar extends Component {
   }
 
   renderActions() {
+    const { auth } = this.props;
     return (
       <div>
-        <IconButton onTouchTap={this.goto.bind(this, '/account')}>
+        <IconButton onTouchTap={this.goto.bind(this, auth ? '/account' : '/login')}>
           <Person color={theme.palette.accent2Color} />
         </IconButton>
-        <IconButton onTouchTap={this.goto.bind(this, '/favourites')}>
-          <Favorite color={theme.palette.accent2Color} />
-        </IconButton>
+        { auth &&
+          <IconButton onTouchTap={this.goto.bind(this, '/favourites')}>
+            <Favorite color={theme.palette.accent2Color} />
+          </IconButton>
+        }
         <IconButton onTouchTap={this.goto.bind(this, '/cart')}>
           <ShoppingCart color={theme.palette.accent1Color} />
         </IconButton>
@@ -94,14 +98,14 @@ export default class NavigationBar extends Component {
         <Drawer docked={false} open={isOpen} onRequestChange={set}>
           <MenuItem leftIcon={<Home />} onTouchTap={this.goto.bind(this, '/')} primaryText="Home" />
           <Divider />
-          <MenuItem leftIcon={<Question />} onTouchTap={this.goto.bind(this, '/survey')} primaryText="Survey" />
-          <MenuItem leftIcon={<HelpOutline />} onTouchTap={this.goto.bind(this, '/faq')} primaryText="FAQ" />
-          <MenuItem leftIcon={<HelpOutline />} onTouchTap={this.goto.bind(this, '/contact')} primaryText="Contact Us" />
+          <MenuItem leftIcon={<Forum />} onTouchTap={this.goto.bind(this, '/faq')} primaryText="FAQ" />
+          <MenuItem leftIcon={<Business />} onTouchTap={this.goto.bind(this, '/contact')} primaryText="Contact Us" />
           <MenuItem leftIcon={<HelpOutline />} onTouchTap={this.goto.bind(this, '/about')} primaryText="About Us" />
           <Divider />
           {!auth && <MenuItem leftIcon={<Person />} onTouchTap={this.goto.bind(this, '/login')} primaryText="Login" />}
+          {!auth && <MenuItem leftIcon={<Person />} onTouchTap={this.goto.bind(this, '/register')} primaryText="Register" />}
           {/* If logged in */}
-          {auth && <MenuItem leftIcon={<Question />} onTouchTap={this.goto.bind(this, '/chat')} primaryText="Chat" />}
+          {auth && <MenuItem leftIcon={<Person />} onTouchTap={this.goto.bind(this, '/account')} primaryText="Account" />}
           {auth && <MenuItem leftIcon={<Person />} onTouchTap={this.logout.bind(this)} primaryText="Logout" />}
           {auth && <MenuItem><span>Logged in as {auth.name}</span></MenuItem>}
         </Drawer>

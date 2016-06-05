@@ -1,9 +1,20 @@
-import React from 'react';
+import React, {Component} from 'react';
+import Helmet from 'react-helmet';
+import Subheader from 'material-ui/Subheader';
+import { Header, Container } from 'components';
 
-export default function NotFound() {
-  return (
-    <div>
-      <h1>Contact Us</h1>
-    </div>
-  );
+export default class ContactUs extends Component {
+
+  render() {
+    return (
+      <div>
+        <Helmet title="Contact Us"/>
+        <Header title="Contact Us" />
+
+        <Container>
+          <Subheader>Contact details and/or company information could be here.</Subheader>
+        </Container>
+      </div>
+    );
+  }
 }

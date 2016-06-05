@@ -4,10 +4,10 @@
  *  ie: import { NavigationBar, Footer } from 'components';
  *
  */
-export SurveyForm from './SurveyForm/SurveyForm';
-
 export Header from './Header/Header';
+export Container from './Container/Container';
 export LandingBanner from './LandingBanner/LandingBanner';
 export NavigationBar from './NavigationBar/NavigationBar';
 export ProductGrid from './ProductGrid/ProductGrid';
+export RegistrationForm from './RegistrationForm/RegistrationForm';
 export Footer from './Footer/Footer';

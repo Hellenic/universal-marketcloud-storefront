@@ -2,8 +2,9 @@ import React, {Component, PropTypes} from 'react';
 import {reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import surveyValidation from './surveyValidation';
+import registrationValidation from './registrationValidation';
 import * as surveyActions from 'redux/modules/survey';
+import styles from './RegistrationForm.scss';
 
 function asyncValidate(data, dispatch, {isValidEmail}) {
   if (!data.email) {
@@ -15,14 +16,13 @@ function asyncValidate(data, dispatch, {isValidEmail}) {
   dispatch => bindActionCreators(surveyActions, dispatch)
 )
 @reduxForm({
-  form: 'survey',
+  form: 'registration',
   fields: ['name', 'email', 'occupation', 'currentlyEmployed', 'sex'],
-  validate: surveyValidation,
+  validate: registrationValidation,
   asyncValidate,
   asyncBlurFields: ['email']
 })
-export default
-class SurveyForm extends Component {
+export default class RegistrationForm extends Component {
   static propTypes = {
     active: PropTypes.string,
     asyncValidating: PropTypes.bool.isRequired,
@@ -47,7 +47,7 @@ class SurveyForm extends Component {
       pristine,
       valid
       } = this.props;
-    const styles = require('./SurveyForm.scss');
+
     const renderInput = (field, label, showAsyncValidating) =>
       <div className={'form-group' + (field.error && field.touched ? ' has-error' : '')}>
         <label htmlFor={field.name} className="col-sm-2">{label}</label>
