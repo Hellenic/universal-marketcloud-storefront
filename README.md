@@ -31,7 +31,7 @@ This is an universal eCommerce boilerplate (mostly for Marketcloud) I've put tog
 * [react-helmet](https://github.com/nfl/react-helmet) to manage title and meta tag information on both server and client
 * [webpack-isomorphic-tools](https://github.com/halt-hammerzeit/webpack-isomorphic-tools) to allow require() work for statics both on client and server
 * [mocha](https://mochajs.org/) to allow writing unit tests for the project.
-* [React Essence](http://getessence.io/) to make all of that pretty.
+* [Material UI](http://www.material-ui.com/) to make all of that pretty.
 * [Marketcloud](http://marketcloud.it) is the eCommerce platform beneath all this fancy looking stuff.
 
 Me and my girlfriend were starting a webshop of our own and I took it for myself to build the technical capabilities. Since the idea was still taking shape, I didn't have any exact direction where to take the shop, so I started to work on general implementations towards Marketcloud. Finally, once the idea was final, I used this as a base to make the final version of the webshop.
