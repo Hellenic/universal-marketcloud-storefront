@@ -98,6 +98,7 @@ export default class NavigationBar extends Component {
         <Drawer docked={false} open={isOpen} onRequestChange={set}>
           <MenuItem leftIcon={<Home />} onTouchTap={this.goto.bind(this, '/')} primaryText="Home" />
           <Divider />
+          <MenuItem leftIcon={<Forum />} onTouchTap={this.goto.bind(this, '/blog')} primaryText="Blog" />
           <MenuItem leftIcon={<Forum />} onTouchTap={this.goto.bind(this, '/faq')} primaryText="FAQ" />
           <MenuItem leftIcon={<Business />} onTouchTap={this.goto.bind(this, '/contact')} primaryText="Contact Us" />
           <MenuItem leftIcon={<HelpOutline />} onTouchTap={this.goto.bind(this, '/about')} primaryText="About Us" />

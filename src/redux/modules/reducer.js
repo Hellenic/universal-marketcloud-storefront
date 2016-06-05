@@ -5,6 +5,7 @@ import {reducer as reduxAsyncConnect} from 'redux-async-connect';
 
 import {reducer as form} from 'redux-form';
 import auth from './auth';
+import blog from './blog';
 import cart from './cart';
 import drawer from './drawer';
 import products from './products';
@@ -14,6 +15,7 @@ export default combineReducers({
   routing: routerReducer,
   reduxAsyncConnect,
   auth,
+  blog,
   cart,
   drawer,
   snackbar,

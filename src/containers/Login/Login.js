@@ -1,8 +1,10 @@
 import React, {Component, PropTypes} from 'react';
+import { Link } from 'react-router';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import * as authActions from 'redux/modules/auth';
 
+import Subheader from 'material-ui/Subheader';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import { Header, Container } from 'components';
@@ -46,6 +48,7 @@ export default class Login extends Component {
               <TextField id="login-pass" ref="password" name="password" type="password"
                 hintText="Password" onKeyDown={this.handleKeyDown.bind(this)} />
               <FlatButton label="Login" primary onTouchTap={this.handleSubmit.bind(this)} />
+              <Subheader>Not registered yet? You can find <Link to="/register">registration here</Link>.</Subheader>
             </div>
           }
 

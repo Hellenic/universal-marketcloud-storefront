@@ -1,0 +1,18 @@
+.container {
+  display: 'flex';
+  flex-wrap: 'wrap';
+  justify-content: 'space-around';
+  margin: 1em 0.5em 2em 0.5em;
+}
+
+.header {
+  text-align: center;
+}
+
+.paper {
+  height: 100px;
+  width: 100px;
+  margin: 20px;
+  text-align: 'center';
+  display: 'inline-block';
+}

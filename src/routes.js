@@ -5,8 +5,9 @@ import {
     App,
     Home,
     About,
-    FAQ,
+    Blog,
     Contact,
+    FAQ,
     NotFound,
     Login,
     Register,
@@ -47,6 +48,7 @@ export default (store) => {
 
       { /* Routes */ }
       <Route path="about" component={About}/>
+      <Route path="blog" component={Blog}/>
       <Route path="cart" component={Cart}/>
       <Route path="contact" component={Contact}/>
       <Route path="faq" component={FAQ}/>
