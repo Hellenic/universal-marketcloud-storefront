@@ -6,6 +6,7 @@ import {
     Home,
     About,
     Blog,
+    ProductPage,
     Contact,
     FAQ,
     NotFound,
@@ -55,6 +56,7 @@ export default (store) => {
       <Route path="contact" component={Contact}/>
       <Route path="faq" component={FAQ}/>
       <Route path="login" component={Login}/>
+      <Route path="/product/:productId*" component={ProductPage}/>
       <Route path="register" component={Register}/>
 
       { /* Catch all route */ }

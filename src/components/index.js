@@ -11,5 +11,6 @@ export Container from './Container/Container';
 export LandingBanner from './LandingBanner/LandingBanner';
 export NavigationBar from './NavigationBar/NavigationBar';
 export ProductGrid from './ProductGrid/ProductGrid';
+export ProductDetails from './ProductDetails/ProductDetails';
 export RegistrationForm from './RegistrationForm/RegistrationForm';
 export Footer from './Footer/Footer';

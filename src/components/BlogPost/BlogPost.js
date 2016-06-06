@@ -20,7 +20,7 @@ export default class BlogPostList extends Component {
     const { postId, posts } = this.props;
     // Note! postId is not actually and ID but the slug
     const post = posts.find(post => post.slug === postId);
-    
+
     return (
       <div className={styles.container}>
         <Subheader>{post.title} - {post.date}</Subheader>
