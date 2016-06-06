@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux';
-import {GridList, GridTile} from 'material-ui/GridList';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import AddShoppingCart from 'material-ui/svg-icons/action/add-shopping-cart';
@@ -14,6 +14,10 @@ export default class ProductGrid extends Component {
   static propTypes = {
     products: PropTypes.array,
     add: PropTypes.func.isRequired
+  }
+
+  handleClick(product) {
+    console.log('Product clicked!', product);
   }
 
   renderAddButton(product) {
@@ -57,7 +61,8 @@ export default class ProductGrid extends Component {
                 key={product.id}
                 title={product.name}
                 subtitle={this.renderPrice(product)}
-                actionIcon={this.renderAddButton(product)}>
+                actionIcon={this.renderAddButton(product)}
+                onTouchTap={this.handleClick.bind(this, product)}>
                 <img src={product.images[0]} />
               </GridTile>
             ))

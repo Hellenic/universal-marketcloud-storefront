@@ -5,6 +5,7 @@
  *
  */
 export Header from './Header/Header';
+export BlogPost from './BlogPost/BlogPost';
 export BlogPostList from './BlogPostList/BlogPostList';
 export Container from './Container/Container';
 export LandingBanner from './LandingBanner/LandingBanner';
