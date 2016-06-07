@@ -1,26 +1,27 @@
-import React, {Component, PropTypes} from 'react';
-import {reduxForm} from 'redux-form';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import TextField from 'material-ui/TextField';
+import React, { Component, PropTypes } from 'react';
+import { reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import RaisedButton from 'material-ui/RaisedButton';
+import TextInput from './TextInput';
+import CircularProgress from 'material-ui/CircularProgress';
 
 import registrationValidation from './registrationValidation';
-import * as surveyActions from 'redux/modules/survey';
-import styles from './RegistrationForm.scss';
+import * as registerActions from 'redux/modules/register';
+// import styles from './RegistrationForm.scss';
 
-function asyncValidate(data, dispatch, {isValidEmail}) {
+function asyncValidate(data, dispatch, { isValidEmail }) {
   if (!data.email) {
     return Promise.resolve({});
   }
   return isValidEmail(data);
 }
 @connect(() => ({}),
-  dispatch => bindActionCreators(surveyActions, dispatch)
+  dispatch => bindActionCreators(registerActions, dispatch)
 )
 @reduxForm({
   form: 'registration',
-  fields: ['name', 'email', 'streetAddress', 'postalCode', 'city'],
+  fields: ['firstName', 'lastName', 'email', 'password', 'passwordRepeat'],
   validate: registrationValidation,
   asyncValidate,
   asyncBlurFields: ['email']
@@ -41,30 +42,24 @@ export default class RegistrationForm extends Component {
   render() {
     const {
       asyncValidating,
-      dirty,
-      fields: {name, email, streetAddress, postalCode, city},
-      active,
+      fields: { firstName, lastName, email, password, passwordRepeat },
       handleSubmit,
-      invalid,
-      resetForm,
-      pristine,
-      valid
-      } = this.props;
-
-    const errorMsg = 'This field is required';
+      resetForm
+    } = this.props;
 
     return (
       <form>
-        <TextField hintText="First name" errorText={errorMsg} floatingLabelText="Enter your first name" />
-        <TextField hintText="Surname" errorText={errorMsg} floatingLabelText="and then your surname" />
+        <TextInput id="first-name" hintText="First name" field={firstName} /><br />
+        <TextInput id="last-name" hintText="Last name" field={lastName} />
         <br />
-        <TextField hintText="Address" fullWidth />
+        <TextInput id="email" hintText="E-Mail" field={email} />
+        { asyncValidating ? <CircularProgress size={0.5} /> : null }
         <br />
-        <TextField hintText="Postal code" />
-        <TextField hintText="City" />
+        <TextInput id="password" hintText="Password" field={password} type="password" /><br />
+        <TextInput id="password-again" hintText="Repeat password" field={passwordRepeat} type="password" />
         <br />
-        <RaisedButton label="Register" primary />
-        <RaisedButton label="Clear" />
+        <RaisedButton label="Register" primary onTouchTap={handleSubmit} />
+        <RaisedButton label="Clear form" secondary onTouchTap={resetForm} />
       </form>
     );
   }

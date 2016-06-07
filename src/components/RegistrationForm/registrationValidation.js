@@ -1,9 +1,11 @@
 import memoize from 'lru-memoize';
-import {createValidator, required, maxLength, email} from 'utils/validation';
+import { createValidator, required, minLength, maxLength, match, email } from 'utils/validation';
 
 const registrationValidation = createValidator({
-  name: [required, maxLength(10)],
+  firstName: [required, maxLength(20)],
+  lastName: maxLength(20),
   email: [required, email],
-  occupation: maxLength(20) // single rules don't have to be in an array
+  password: [required, minLength(6), maxLength(50)],
+  passwordRepeat: match('password')
 });
 export default memoize(10)(registrationValidation);

@@ -38,9 +38,8 @@ export default class ProductGrid extends Component {
                 title={product.name}
                 subtitle={<PriceTag product={product} />}
                 actionIcon={<AddCartButton product={product} />}
-                className={styles.tile}
-                onTouchTap={() => pushState(`/product/${product.id}/${product.name}`)}>
-                <img src={product.images[0]} />
+                className={styles.tile}>
+                <img src={product.images[0]} onTouchTap={() => pushState(`/product/${product.id}/${product.name}`)} />
               </GridTile>
             ))
           }
