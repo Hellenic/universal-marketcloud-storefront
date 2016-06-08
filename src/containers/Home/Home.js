@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import { asyncConnect } from 'redux-async-connect';
 
 @asyncConnect([{
-  promise: ({store: {dispatch, getState}}) => {
+  promise: ({ store: {dispatch, getState} }) => {
     const promises = [];
     if (!isProductsLoaded(getState())) {
       promises.push(dispatch(loadProducts()));

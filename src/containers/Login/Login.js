@@ -9,10 +9,11 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import { Header, Container } from 'components';
 
-@connect(state => ({user: state.auth.user}), authActions)
+@connect(state => ({ user: state.auth.user, errors: state.auth.errors }), authActions)
 export default class Login extends Component {
   static propTypes = {
     user: PropTypes.object,
+    errors: PropTypes.array,
     login: PropTypes.func,
     logout: PropTypes.func
   }
@@ -33,7 +34,7 @@ export default class Login extends Component {
   }
 
   render() {
-    const { user, logout } = this.props;
+    const { user, errors, logout } = this.props;
 
     return (
       <div>
@@ -44,7 +45,8 @@ export default class Login extends Component {
           {!user &&
             <div>
               <TextField id="login-user" ref="username" name="username"
-                hintText="Username" onKeyDown={this.handleKeyDown.bind(this)} />
+                hintText="Username" errorText={(errors[0]) ? errors[0].message : ''}
+                onKeyDown={this.handleKeyDown.bind(this)} />
               <TextField id="login-pass" ref="password" name="password" type="password"
                 hintText="Password" onKeyDown={this.handleKeyDown.bind(this)} />
               <FlatButton label="Login" primary onTouchTap={this.handleSubmit.bind(this)} />

@@ -6,7 +6,8 @@ const CREATE_SUCCESS = 'app/register/CREATE_SUCCESS';
 const CREATE_FAIL = 'app/register/CREATE_FAIL';
 
 const initialState = {
-  saveError: null,
+  created: false,
+  errors: []
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -16,19 +17,26 @@ export default function reducer(state = initialState, action = {}) {
     case IS_VALID_SUCCESS:
       return {
         ...state,
-        saveError: null,
+        errors: []
       };
     case IS_VALID_FAIL:
-      return typeof action.error === 'string' ? {
+      return {
         ...state,
-        saveError: action.error
-      } : state;
+        errors: action.error.errors
+      };
     case CREATE:
       return state;
     case CREATE_SUCCESS:
-      return state;
+      return {
+        ...state,
+        errors: [],
+        created: true
+      };
     case CREATE_FAIL:
-      return state;
+      return {
+        ...state,
+        errors: action.error.errors
+      };
     default:
       return state;
   }
@@ -42,7 +50,7 @@ export function create(data) {
   };
   return {
     types: [CREATE, CREATE_SUCCESS, CREATE_FAIL],
-    promise: client => client.post('/users', customer)
+    promise: client => client.post('/users', { data: customer })
   };
 }
 

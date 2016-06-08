@@ -10,24 +10,25 @@ import registrationValidation from './registrationValidation';
 import * as registerActions from 'redux/modules/register';
 // import styles from './RegistrationForm.scss';
 
-function asyncValidate(data, dispatch, { isValidEmail }) {
-  if (!data.email) {
-    return Promise.resolve({});
-  }
-  return isValidEmail(data.email);
-}
-@connect(() => ({}),
+// function asyncValidate(data, dispatch, { isValidEmail }) {
+//   if (!data.email) {
+//     return Promise.resolve({});
+//   }
+//   return isValidEmail(data.email);
+// }
+@connect(state => ({ state: state.register }),
   dispatch => bindActionCreators(registerActions, dispatch)
 )
 @reduxForm({
   form: 'registration',
   fields: ['firstName', 'lastName', 'email', 'password', 'passwordRepeat'],
-  validate: registrationValidation,
-  asyncValidate,
-  asyncBlurFields: ['email']
+  validate: registrationValidation
+  // asyncValidate,
+  // asyncBlurFields: ['email']
 })
 export default class RegistrationForm extends Component {
   static propTypes = {
+    state: PropTypes.object,
     active: PropTypes.string,
     asyncValidating: PropTypes.bool.isRequired,
     fields: PropTypes.object.isRequired,
@@ -44,15 +45,19 @@ export default class RegistrationForm extends Component {
       asyncValidating,
       fields: { firstName, lastName, email, password, passwordRepeat },
       handleSubmit,
-      resetForm
+      resetForm,
+      state
     } = this.props;
+
+    // TODO API is still not so clear about the errors, so this needs more work
+    const emailError = (state.errors.some(error => error.type === 'BadRequest')) ? 'Email is already in use.' : '';
 
     return (
       <form>
         <TextInput id="first-name" hintText="First name" field={firstName} /><br />
         <TextInput id="last-name" hintText="Last name" field={lastName} />
         <br />
-        <TextInput id="email" hintText="E-Mail" field={email} />
+        <TextInput id="email" hintText="E-Mail" field={email} errorText={emailError} />
         { asyncValidating ? <CircularProgress size={0.5} /> : null }
         <br />
         <TextInput id="password" hintText="Password" field={password} type="password" /><br />

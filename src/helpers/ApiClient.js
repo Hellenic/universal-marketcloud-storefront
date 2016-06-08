@@ -24,6 +24,8 @@ export default class ApiClient {
         if (params) {
           request.query(params);
         }
+        
+        request.set('Content-Type', 'application/json');
         if (config.api.publicKey) {
           request.set('Authorization', config.api.publicKey);
         }

@@ -3,22 +3,31 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { initialize } from 'redux-form';
 import { create } from 'redux/modules/register';
+import { display as displaySnack } from 'redux/modules/snackbar';
 import { Header, RegistrationForm } from 'components';
 import Subheader from 'material-ui/Subheader';
 import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 
-@connect(() => ({}), { initialize, create })
+@connect(state => ({ created: state.register.created }), { initialize, create, displaySnack })
 export default class Register extends Component {
   static propTypes = {
+    created: PropTypes.bool,
     initialize: PropTypes.func.isRequired,
-    create: PropTypes.func.isRequired
+    create: PropTypes.func.isRequired,
+    displaySnack: PropTypes.func.isRequired,
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.created && nextProps.created) {
+      this.props.initialize('registration', {});
+      this.props.displaySnack('You have registered into the webshop!', 4000);
+    }
   }
 
   handleSubmit = (data) => {
     this.props.create(data);
-    this.props.initialize('registration', {});
   }
 
   render() {
