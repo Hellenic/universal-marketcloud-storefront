@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import { isLoaded as isProductsLoaded, load as loadProducts } from 'redux/modules/products';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
 import { handleRequestClose } from 'redux/modules/snackbar';
 import { NavigationBar, Footer } from 'components';
@@ -23,9 +22,6 @@ injectTapEventPlugin();
 
     if (!isAuthLoaded(getState())) {
       promises.push(dispatch(loadAuth()));
-    }
-    if (!isProductsLoaded(getState())) {
-      promises.push(dispatch(loadProducts()));
     }
 
     return Promise.all(promises);

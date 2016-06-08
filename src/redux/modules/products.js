@@ -1,11 +1,9 @@
-import Marketcloud from 'marketcloud-node';
-import config from '../../config';
-
 const LOAD = 'app/products/LOAD';
 const LOAD_SUCCESS = 'app/products/LOAD_SUCCESS';
 const LOAD_FAIL = 'app/products/LOAD_FAIL';
 
 const initialState = {
+  products: [],
   loaded: false
 };
 
@@ -21,7 +19,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: true,
-        data: action.result
+        products: action.result.data
       };
     case LOAD_FAIL:
       return {
@@ -40,13 +38,8 @@ export function isLoaded(globalState) {
 }
 
 export function load() {
-  // TODO I believe it would be cleaner if I make new ApiClient for Marketcloud
-  const marketcloud = new Marketcloud.Client({
-    public_key: config.marketcloud.publicKey,
-    secret_key: config.marketcloud.secretKey
-  });
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: () => marketcloud.products.list({})
+    promise: (client) => client.get('/products')
   };
 }

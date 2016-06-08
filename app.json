@@ -5,6 +5,7 @@
   "logo": "http://node-js-sample.herokuapp.com/node.svg",
   "keywords": [
     "react",
+    "redux",
     "isomorphic",
     "universal",
     "ecommerce",
@@ -14,7 +15,6 @@
     "express",
     "hot reloading",
     "react-hot-reloader",
-    "redux",
     "boilerplate",
     "babel"
   ]

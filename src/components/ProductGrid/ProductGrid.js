@@ -10,7 +10,7 @@ import PriceTag from './PriceTag';
 import AddCartButton from './AddCartButton';
 import styles from './ProductGrid.scss';
 
-@connect(state => ({ products: state.products.data }), { pushState: push })
+@connect(state => ({ products: state.products.products }), { pushState: push })
 export default class ProductGrid extends Component {
   static propTypes = {
     products: PropTypes.array,
@@ -23,7 +23,7 @@ export default class ProductGrid extends Component {
 
   render() {
     const { products, pushState } = this.props;
-
+    
     return (
       <div className={styles.container}>
         <Subheader className={styles.header}>Products</Subheader>

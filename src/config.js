@@ -12,11 +12,9 @@ const environment = {
 module.exports = Object.assign({
   host: process.env.HOST || 'localhost',
   port: process.env.PORT,
-  apiHost: process.env.APIHOST || 'localhost',
-  apiPort: process.env.APIPORT,
-  marketcloud: {
-    publicKey: 'c21274a7-d13b-41e3-b875-c848909aa648',
-    secretKey: '1aIi8W14Dw9IKxgmhXTz3Xh5w6rZZYkQgooE0w6hZuE='
+  api: {
+    host: process.env.APIHOST || 'http://api.marketcloud.it/v0',
+    token: 'c21274a7-d13b-41e3-b875-c848909aa648'
   },
   app: {
     title: 'Universal Marketcloud Storefront',

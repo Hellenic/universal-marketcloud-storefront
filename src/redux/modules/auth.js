@@ -116,7 +116,7 @@ export function login(username, password) {
 
   return {
     types: [AUTH, AUTH_SUCCESS, AUTH_FAIL],
-    promise: (client) => marketcloud.users.authenticate(username, password)
+    promise: () => marketcloud.users.authenticate(username, password)
   };
 }
 

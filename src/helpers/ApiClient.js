@@ -1,13 +1,13 @@
 import superagent from 'superagent';
 import config from '../config';
 
-const methods = ['get', 'post', 'put', 'patch', 'del'];
+const methods = ['get', 'post', 'put', 'delete'];
 
 function formatUrl(path) {
   const adjustedPath = path[0] !== '/' ? '/' + path : path;
   if (__SERVER__) {
     // Prepend host and port of the API server to the path.
-    return 'http://' + config.apiHost + ':' + config.apiPort + adjustedPath;
+    return config.api.host + adjustedPath;
   }
   // Prepend `/api` to relative URL, to proxy to API server.
   return '/api' + adjustedPath;
@@ -21,6 +21,9 @@ export default class ApiClient {
 
         if (params) {
           request.query(params);
+        }
+        if (config.api.token) {
+          request.set('Authorization', config.api.token);
         }
 
         if (__SERVER__ && req.get('cookie')) {
