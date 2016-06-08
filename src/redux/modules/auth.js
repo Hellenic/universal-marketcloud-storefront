@@ -1,12 +1,18 @@
-const LOAD = 'redux-example/auth/LOAD';
-const LOAD_SUCCESS = 'redux-example/auth/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/auth/LOAD_FAIL';
-const LOGIN = 'redux-example/auth/LOGIN';
-const LOGIN_SUCCESS = 'redux-example/auth/LOGIN_SUCCESS';
-const LOGIN_FAIL = 'redux-example/auth/LOGIN_FAIL';
-const LOGOUT = 'redux-example/auth/LOGOUT';
-const LOGOUT_SUCCESS = 'redux-example/auth/LOGOUT_SUCCESS';
-const LOGOUT_FAIL = 'redux-example/auth/LOGOUT_FAIL';
+import Marketcloud from 'marketcloud-node';
+import config from '../../config';
+
+const LOAD = 'app/auth/LOAD';
+const LOAD_SUCCESS = 'app/auth/LOAD_SUCCESS';
+const LOAD_FAIL = 'app/auth/LOAD_FAIL';
+const AUTH = 'app/auth/AUTH';
+const AUTH_SUCCESS = 'app/auth/AUTH_SUCCESS';
+const AUTH_FAIL = 'app/auth/AUTH_FAIL';
+const LOGIN = 'app/auth/LOGIN';
+const LOGIN_SUCCESS = 'app/auth/LOGIN_SUCCESS';
+const LOGIN_FAIL = 'app/auth/LOGIN_FAIL';
+const LOGOUT = 'app/auth/LOGOUT';
+const LOGOUT_SUCCESS = 'app/auth/LOGOUT_SUCCESS';
+const LOGOUT_FAIL = 'app/auth/LOGOUT_FAIL';
 
 const initialState = {
   loaded: false
@@ -32,6 +38,24 @@ export default function reducer(state = initialState, action = {}) {
         loading: false,
         loaded: false,
         error: action.error
+      };
+    case AUTH:
+      return {
+        ...state,
+        loggingIn: true
+      };
+    case AUTH_SUCCESS:
+      return {
+        ...state,
+        loggingIn: false,
+        user: action.result
+      };
+    case AUTH_FAIL:
+      return {
+        ...state,
+        loggingIn: false,
+        user: null,
+        loginError: action.error
       };
     case LOGIN:
       return {
@@ -84,7 +108,19 @@ export function load() {
   };
 }
 
-export function login(username, password) { // eslint-disable-line no-unused-vars
+export function login(username, password) {
+  const marketcloud = new Marketcloud.Client({
+    public_key: config.marketcloud.publicKey,
+    secret_key: config.marketcloud.secretKey
+  });
+
+  return {
+    types: [AUTH, AUTH_SUCCESS, AUTH_FAIL],
+    promise: (client) => marketcloud.users.authenticate(username, password)
+  };
+}
+
+export function persist(username) {
   return {
     types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
     promise: (client) => client.post('/login', {

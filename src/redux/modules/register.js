@@ -1,6 +1,12 @@
-const IS_VALID = 'redux-example/register/IS_VALID';
-const IS_VALID_SUCCESS = 'redux-example/register/IS_VALID_SUCCESS';
-const IS_VALID_FAIL = 'redux-example/register/IS_VALID_FAIL';
+import Marketcloud from 'marketcloud-node';
+import config from '../../config';
+
+const IS_VALID = 'app/register/IS_VALID';
+const IS_VALID_SUCCESS = 'app/register/IS_VALID_SUCCESS';
+const IS_VALID_FAIL = 'app/register/IS_VALID_FAIL';
+const CREATE = 'app/register/CREATE';
+const CREATE_SUCCESS = 'app/register/CREATE_SUCCESS';
+const CREATE_FAIL = 'app/register/CREATE_FAIL';
 
 const initialState = {
   saveError: null,
@@ -20,9 +26,33 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         saveError: action.error
       } : state;
+    case CREATE:
+      return state;
+    case CREATE_SUCCESS:
+      return state;
+    case CREATE_FAIL:
+      return state;
     default:
       return state;
   }
+}
+
+export function create(data) {
+  const customer = {
+    name: `${data.firstName} ${data.lastName}`,
+    email: data.email,
+    password: data.password
+  };
+  
+  // TODO I believe it would be cleaner if I make new ApiClient for Marketcloud
+  const marketcloud = new Marketcloud.Client({
+    public_key: config.marketcloud.publicKey,
+    secret_key: config.marketcloud.secretKey
+  });
+  return {
+    types: [CREATE, CREATE_SUCCESS, CREATE_FAIL],
+    promise: () => marketcloud.users.create(customer)
+  };
 }
 
 export function isValidEmail(data) {

@@ -1,9 +1,9 @@
 import Marketcloud from 'marketcloud-node';
 import config from '../../config';
 
-const LOAD = 'redux-example/products/LOAD';
-const LOAD_SUCCESS = 'redux-example/products/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/products/LOAD_FAIL';
+const LOAD = 'app/products/LOAD';
+const LOAD_SUCCESS = 'app/products/LOAD_SUCCESS';
+const LOAD_FAIL = 'app/products/LOAD_FAIL';
 
 const initialState = {
   loaded: false

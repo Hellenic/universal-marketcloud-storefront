@@ -1,5 +1,5 @@
-const DISPLAY = 'redux-example/snackbar/DISPLAY';
-const HIDE = 'redux-example/snackbar/HIDE';
+const DISPLAY = 'app/snackbar/DISPLAY';
+const HIDE = 'app/snackbar/HIDE';
 
 const initialState = {
   text: '',

@@ -2,20 +2,22 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { initialize } from 'redux-form';
+import { create } from 'redux/modules/register';
 import { Header, RegistrationForm } from 'components';
 import Subheader from 'material-ui/Subheader';
 import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 
-@connect(() => ({}), {initialize})
+@connect(() => ({}), { initialize, create })
 export default class Register extends Component {
   static propTypes = {
-    initialize: PropTypes.func.isRequired
+    initialize: PropTypes.func.isRequired,
+    create: PropTypes.func.isRequired
   }
 
   handleSubmit = (data) => {
-    console.log('Data submitted! ' + JSON.stringify(data));
+    this.props.create(data);
     this.props.initialize('registration', {});
   }
 

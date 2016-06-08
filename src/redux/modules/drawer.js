@@ -1,6 +1,6 @@
-const OPEN = 'redux-example/drawer/OPEN';
-const CLOSED = 'redux-example/drawer/CLOSED';
-const SET = 'redux-example/drawer/SET';
+const OPEN = 'app/drawer/OPEN';
+const CLOSED = 'app/drawer/CLOSED';
+const SET = 'app/drawer/SET';
 
 const initialState = {
   open: false
