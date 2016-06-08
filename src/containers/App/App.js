@@ -20,9 +20,9 @@ injectTapEventPlugin();
   promise: ({store: {dispatch, getState}}) => {
     const promises = [];
 
-    if (!isAuthLoaded(getState())) {
-      promises.push(dispatch(loadAuth()));
-    }
+    // if (!isAuthLoaded(getState())) {
+    //   promises.push(dispatch(loadAuth()));
+    // }
 
     return Promise.all(promises);
   }

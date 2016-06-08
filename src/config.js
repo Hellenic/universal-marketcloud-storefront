@@ -13,7 +13,7 @@ module.exports = Object.assign({
   host: process.env.HOST || 'localhost',
   port: process.env.PORT,
   api: {
-    host: process.env.APIHOST || 'http://api.marketcloud.it/v0',
+    host: process.env.APIHOST || 'http://api.marketcloud.it',
     token: 'c21274a7-d13b-41e3-b875-c848909aa648'
   },
   app: {

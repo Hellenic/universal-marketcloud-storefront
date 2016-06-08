@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom/server';
 import config from './config';
 import favicon from 'serve-favicon';
 import compression from 'compression';
-import httpProxy from 'http-proxy';
+import proxy from 'express-http-proxy';
+import helmet from 'helmet';
 import path from 'path';
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
@@ -19,47 +20,22 @@ import createHistory from 'react-router/lib/createMemoryHistory';
 import {Provider} from 'react-redux';
 import getRoutes from './routes';
 
-const targetUrl = config.api.host;
 const pretty = new PrettyError();
 const app = new Express();
 const server = new http.Server(app);
-const proxy = httpProxy.createProxyServer({
-  target: targetUrl,
-  ws: false
-});
 
+app.use(helmet());
 app.use(compression());
 app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));
 
 app.use(Express.static(path.join(__dirname, '..', 'static')));
 
-// Proxy to API server
-app.use('/api', (req, res) => {
-  proxy.web(req, res, {target: targetUrl});
-});
-
-// I'll just leave these here if we need WebSocket at some point
-// app.use('/ws', (req, res) => {
-//   proxy.web(req, res, {target: targetUrl + '/ws'});
-// });
-//
-// server.on('upgrade', (req, socket, head) => {
-//   proxy.ws(req, socket, head);
-// });
-
-// added the error handling to avoid https://github.com/nodejitsu/node-http-proxy/issues/527
-proxy.on('error', (error, req, res) => {
-  let json;
-  if (error.code !== 'ECONNRESET') {
-    console.error('proxy error', error);
+// Proxy to API Server
+app.use('/api', proxy(config.api.host, {
+  forwardPath: (req, res) => {
+    return '/v0' + require('url').parse(req.url).path;
   }
-  if (!res.headersSent) {
-    res.writeHead(500, {'content-type': 'application/json'});
-  }
-
-  json = {error: 'proxy_error', reason: error.message};
-  res.end(JSON.stringify(json));
-});
+}));
 
 app.use((req, res) => {
   if (__DEVELOPMENT__) {
