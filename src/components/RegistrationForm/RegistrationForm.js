@@ -14,7 +14,7 @@ function asyncValidate(data, dispatch, { isValidEmail }) {
   if (!data.email) {
     return Promise.resolve({});
   }
-  return isValidEmail(data);
+  return isValidEmail(data.email);
 }
 @connect(() => ({}),
   dispatch => bindActionCreators(registerActions, dispatch)

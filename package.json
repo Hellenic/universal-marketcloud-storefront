@@ -89,7 +89,6 @@
     "file-loader": "^0.8.5",
     "helmet": "^2.1.0",
     "hoist-non-react-statics": "^1.0.3",
-    "http-proxy": "^1.13.3",
     "invariant": "^2.2.0",
     "less": "^2.5.3",
     "less-loader": "^2.2.1",

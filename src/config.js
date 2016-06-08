@@ -14,7 +14,7 @@ module.exports = Object.assign({
   port: process.env.PORT,
   api: {
     host: process.env.APIHOST || 'http://api.marketcloud.it',
-    token: 'c21274a7-d13b-41e3-b875-c848909aa648'
+    publicKey: 'c21274a7-d13b-41e3-b875-c848909aa648'
   },
   app: {
     title: 'Universal Marketcloud Storefront',

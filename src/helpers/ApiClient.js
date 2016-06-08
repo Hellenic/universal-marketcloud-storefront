@@ -4,7 +4,9 @@ import config from '../config';
 const methods = ['get', 'post', 'put', 'delete'];
 
 function formatUrl(path) {
-  const adjustedPath = path[0] !== '/' ? '/' + path : path;
+  let adjustedPath = path[0] !== '/' ? '/' + path : path;
+  adjustedPath = '/v0' + adjustedPath;
+
   if (__SERVER__) {
     // Prepend host and port of the API server to the path.
     return config.api.host + adjustedPath;
@@ -22,8 +24,8 @@ export default class ApiClient {
         if (params) {
           request.query(params);
         }
-        if (config.api.token) {
-          request.set('Authorization', config.api.token);
+        if (config.api.publicKey) {
+          request.set('Authorization', config.api.publicKey);
         }
 
         if (data) {

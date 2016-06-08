@@ -31,11 +31,7 @@ app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));
 app.use(Express.static(path.join(__dirname, '..', 'static')));
 
 // Proxy to API Server
-app.use('/api', proxy(config.api.host, {
-  forwardPath: (req, res) => {
-    return '/v0' + require('url').parse(req.url).path;
-  }
-}));
+app.use('/api', proxy(config.api.host));
 
 app.use((req, res) => {
   if (__DEVELOPMENT__) {
