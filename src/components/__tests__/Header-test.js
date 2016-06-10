@@ -1,35 +1,43 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { renderIntoDocument } from 'react-addons-test-utils';
+import { shallow } from 'enzyme';
 import { expect } from 'chai';
+
 import { Header } from 'components';
-import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router';
-import createStore from 'redux/create';
 
 describe('Header', () => {
-  const title = "Hello world!";
-  const subtitle = "Chai is good.";
-  const renderer = renderIntoDocument(<Header title={title} subtitle={subtitle} />);
-  const dom = ReactDOM.findDOMNode(renderer);
+  const title = 'Hello world!';
+  const subtitle = 'Chai is good.';
 
   it('should render correctly', () => {
-    return expect(renderer).to.be.ok;
+    const wrapper = shallow(<Header title={title} />);
+    return expect(wrapper).to.be.ok;
   });
 
-  it('should render with correct value', () => {
-    const text = dom.getElementsByTagName('h1')[0].textContent;
-    expect(text).to.equal(title);
+  it('should render with correct title', () => {
+    const wrapper = shallow(<Header title={title} />);
+    expect(wrapper.find('h1').first().text()).to.equal(title);
   });
 
-  it('should render with a reload button', () => {
-    const text = dom.getElementsByTagName('h2')[0].textContent;
-    expect(text).to.equal(subtitle);
+  it('should render with correct subtitle', () => {
+    const wrapper = shallow(<Header title={title} subtitle={subtitle} />);
+
+    expect(wrapper.find('h1').first().text()).to.equal(title);
+    expect(wrapper.find('h2').first().text()).to.equal(subtitle);
+  });
+
+  it('should render with correct title but without subtitle', () => {
+    const wrapper = shallow(<Header title={title} />);
+
+    expect(wrapper.find('h1').first().text()).to.equal(title);
+    expect(wrapper.find('h2')).to.have.length(0);
   });
 
   it('should render the correct className', () => {
+    const wrapper = shallow(<Header title={title} subtitle={subtitle} />);
     const styles = require('components/Header/Header.scss');
-    expect(styles.header).to.be.a('string');
-    expect(dom.className).to.include(styles.header);
+
+    expect(wrapper.hasClass(styles.container)).to.be.true;
+    expect(wrapper.find('h1').hasClass(styles.header)).to.be.true;
+    expect(wrapper.find('h2').hasClass(styles.subheader)).to.be.true;
   });
 });

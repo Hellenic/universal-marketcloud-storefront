@@ -1,40 +1,39 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { renderIntoDocument } from 'react-addons-test-utils';
+import { mount } from 'enzyme';
 import { expect } from 'chai';
 import TestWrapper from './TestWrapper';
 
 import { ProductGrid } from 'components';
+import { GridList, GridTile } from 'material-ui/GridList';
 
 describe('ProductGrid', () => {
   const mockStore = {
     products: {
       load: () => {},
-      products: [],
+      products: [
+        { id: 1, name: "Product #1", images: [], price: 7.9, price_discount: 6.9, stock_type: 'status' },
+        { id: 2, name: "Product #2", images: [], price: 7.9, stock_type: 'status' }
+      ],
       loaded: false
     }
   };
 
-  const renderer = renderIntoDocument(<TestWrapper store={mockStore}><ProductGrid /></TestWrapper>);
-  const dom = ReactDOM.findDOMNode(renderer);
+  const Testable = () => (<TestWrapper store={mockStore}><ProductGrid /></TestWrapper>);
 
   it('should render correctly', () => {
-    return expect(renderer).to.be.ok;
+    const wrapper = mount(<Testable />);
+    expect(wrapper).to.be.ok;
+    expect(wrapper.find(ProductGrid)).to.be.ok;
   });
 
-  it('should render with correct value', () => {
-    const text = dom.getElementsByTagName('strong')[0].textContent;
-    expect(text).to.equal(mockStore.info.data.message);
+  it('should render a search bar', () => {
+    const wrapper = mount(<Testable />).find(ProductGrid);
+    expect(wrapper.find('#product-search')).to.have.length(1);
   });
 
-  it('should render with a reload button', () => {
-    const text = dom.getElementsByTagName('button')[0].textContent;
-    expect(text).to.be.a('string');
-  });
-
-  it('should render the correct className', () => {
-    const styles = require('components/ProductGrid/ProductGrid.scss');
-    expect(styles.infoBar).to.be.a('string');
-    expect(dom.className).to.include(styles.infoBar);
+  it('should render the products as GridTiles', () => {
+    const wrapper = mount(<Testable />).find(ProductGrid);
+    expect(wrapper.find(GridList)).to.have.length(1);
+    expect(wrapper.find(GridTile)).to.have.length(2);
   });
 });

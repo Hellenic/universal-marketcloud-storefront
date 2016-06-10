@@ -20,7 +20,8 @@ const TestWrapper = (props) => {
 };
 
 TestWrapper.propTypes = {
-  store: PropTypes.object
+  store: PropTypes.object.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default TestWrapper;

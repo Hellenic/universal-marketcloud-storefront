@@ -1,8 +1,9 @@
 # Universal Marketcloud Storefront boilerplate
 
-TODO Put shields here.
-
-## Under contruction!
+[![build status](https://img.shields.io/travis/Hellenic/universal-marketcloud-storefront/master.svg?style=flat-square)](https://travis-ci.org/Hellenic/universal-marketcloud-storefront)
+[![Dependency Status](https://david-dm.org/Hellenic/universal-marketcloud-storefront.svg?style=flat-square)](https://david-dm.org/Hellenic/universal-marketcloud-storefront)
+[![devDependency Status](https://david-dm.org/Hellenic/universal-marketcloud-storefront/dev-status.svg?style=flat-square)](https://david-dm.org/Hellenic/universal-marketcloud-storefront#info=devDependencies)
+[![Live demo](https://img.shields.io/badge/live-demo-brightgreen.svg?style=flat-square)](http://karkk.ai//nen/universal-marketcloud-storefront)
 
 ---
 
@@ -30,15 +31,15 @@ This is an universal eCommerce boilerplate (mostly for Marketcloud) I've put tog
 * [font-awesome-webpack](https://github.com/gowravshekar/font-awesome-webpack) to customize FontAwesome
 * [react-helmet](https://github.com/nfl/react-helmet) to manage title and meta tag information on both server and client
 * [webpack-isomorphic-tools](https://github.com/halt-hammerzeit/webpack-isomorphic-tools) to allow require() work for statics both on client and server
-* [mocha](https://mochajs.org/) to allow writing unit tests for the project.
+* [mocha](https://mochajs.org/) & [chai](http://chaijs.com/) to allow writing unit tests for the project.
 * [Material UI](http://www.material-ui.com/) to make all of that pretty.
 * [Marketcloud](http://marketcloud.it) is the eCommerce platform beneath all this fancy looking stuff.
 
-Me and my girlfriend were starting a webshop of our own and I took it for myself to build the technical capabilities. Since the idea was still taking shape, I didn't have any exact direction where to take the shop, so I started to work on general implementations towards Marketcloud. Finally, once the idea was final, I used this as a base to make the final version of the webshop.
+I am planning to build a real webshop at some point, but since the idea was still taking shape so I started to work on general implementations towards Marketcloud. Finally, once the idea will be final, I will use this as a base to build that real shop.
 
 In other words, this is kind of a boilerplate if you ever feel like building a stunning webshop of your own. It will offer huge variety of features what most, even the biggest, eCommerce storefronts won't offer, like super-fast and consistent user experience. Boilerplate is using Marketcloud, so if you are using that as well, you can get started very quickly. If not, then you'll just need to change all the API bindings and the logics related to it.
 
-This project is based on awesome [react-redux-universal](https://github.com/erikras/react-redux-universal-hot-example) boilerplate by [@erikras](https://twitter.com/erikras). You can read from there what's actually contained in this project as well.
+This project is based on awesome [react-redux-universal](https://github.com/Hellenic/universal-marketcloud-storefront) boilerplate by [@erikras](https://twitter.com/erikras). You can read from there what's actually contained in this project as well.
 
 ## Installation
 
@@ -61,27 +62,13 @@ npm run build
 npm run start
 ```
 
-## Demo
-
-Still not quite there yet.
-
-## Documentation
-
-Still not quite there yet.
-
-## FAQ
-
-Still not quite there yet.
-
 ## Roadmap
 
-Still not quite there yet.
+First need to get the basics in shape, after that I might plan something further.
 
 ## Contributing
 
 I am more than happy to accept external contributions to the project in the form of feedback, bug reports and even better - pull requests :)
-
-If you would like to submit a pull request, please make an effort to follow the guide in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 Cheers!
