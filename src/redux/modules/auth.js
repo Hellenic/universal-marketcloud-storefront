@@ -3,12 +3,10 @@ const LOGIN = 'app/auth/LOGIN';
 const LOGIN_SUCCESS = 'app/auth/LOGIN_SUCCESS';
 const LOGIN_FAIL = 'app/auth/LOGIN_FAIL';
 const LOGOUT = 'app/auth/LOGOUT';
-const LOGOUT_SUCCESS = 'app/auth/LOGOUT_SUCCESS';
-const LOGOUT_FAIL = 'app/auth/LOGOUT_FAIL';
 
 const initialState = {
-  loaded: false,
-  loading: false,
+  loggingIn: false,
+  token: null,
   user: null,
   errors: []
 };
@@ -17,7 +15,10 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD:
       return {
-        ...state
+        ...state,
+        token: null,
+        user: null,
+        errors: []
       };
     case LOGIN:
       return {
@@ -25,11 +26,12 @@ export default function reducer(state = initialState, action = {}) {
         loggingIn: true
       };
     case LOGIN_SUCCESS:
+      const auth = action.result.data;
       return {
         ...state,
         loggingIn: false,
-        token: action.result.data.token,
-        user: action.result.data.user,
+        token: auth.token,
+        user: auth.user,
         errors: []
       };
     case LOGIN_FAIL:
@@ -41,28 +43,11 @@ export default function reducer(state = initialState, action = {}) {
       };
     case LOGOUT:
       return {
-        ...state,
-        loggingOut: true
-      };
-    case LOGOUT_SUCCESS:
-      return {
-        ...state,
-        loggingOut: false,
-        user: null
-      };
-    case LOGOUT_FAIL:
-      return {
-        ...state,
-        loggingOut: false,
-        errors: action.error.errors
+        ...state
       };
     default:
       return state;
   }
-}
-
-export function isLoaded(globalState) {
-  return globalState.auth && globalState.auth.loaded;
 }
 
 export function load() {
@@ -77,8 +62,5 @@ export function login(email, password) {
 }
 
 export function logout() {
-  return {
-    types: [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAIL],
-    promise: (client) => client.get('/logout')
-  };
+  return { type: LOGOUT };
 }

@@ -5,23 +5,23 @@ import AddShoppingCart from 'material-ui/svg-icons/action/add-shopping-cart';
 
 import { add } from 'redux/modules/cart';
 import * as ProductUtils from 'utils/product';
-// import styles from './ProductGrid.scss';
 
-@connect(() => ({}), { add })
+@connect(state => ({ cart: state.cart }), { add })
 export default class AddCartButton extends Component {
   static propTypes = {
+    cart: PropTypes.object,
     product: PropTypes.object.isRequired,
     add: PropTypes.func.isRequired
   }
 
   render() {
-    const { product, add } = this.props;
+    const { cart, product, add } = this.props;
     const hasStock = ProductUtils.hasStock(product);
     const tooltip = hasStock ? `Add one ${product.name} to cart.` : `${product.name} is out of stock`;
 
     return (
       <IconButton disabled={!hasStock}
-        onTouchTap={() => add(product.id)}
+        onTouchTap={() => add(product.id, 1, cart.id)}
         tooltip={<span>{tooltip}</span>} tooltipPosition="top-left">
         <AddShoppingCart color="white" />
       </IconButton>

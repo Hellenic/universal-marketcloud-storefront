@@ -1,14 +1,13 @@
-import Marketcloud from 'marketcloud-node';
-import config from '../../config';
-
 const ADD = 'app/cart/ADD';
 const ADD_SUCCESS = 'app/cart/ADD_SUCCESS';
 const ADD_FAIL = 'app/cart/ADD_FAIL';
 const REMOVE = 'app/cart/REMOVE';
-const UPDATE = 'app/cart/UPDATE';
 
 const initialState = {
-  items: []
+  loading: true,
+  id: null,
+  items: [],
+  errors: []
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -16,13 +15,22 @@ export default function reducer(state = initialState, action = {}) {
     case ADD:
       return {
         ...state,
-        // items: items.push(action.item)
+        loading: true
+      };
+    case ADD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        id: action.result.data.id,
+        items: action.result.data.items
+      };
+    case ADD_FAIL:
+      return {
+        ...state,
+        loading: false,
+        errors: action.error.errors
       };
     case REMOVE:
-      return {
-        ...state
-      };
-    case UPDATE:
       return {
         ...state
       };
@@ -31,25 +39,21 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
-export function add(productId, quantity = 1) {
-  // TODO I believe it would be cleaner if I make new ApiClient for Marketcloud
-  const marketcloud = new Marketcloud.Client({
-    public_key: config.marketcloud.publicKey,
-    secret_key: config.marketcloud.secretKey
-  });
+// Cart is created with POST, existing cart is updated with PUT
+export function add(productId, quantity = 1, cartId) {
+  const method = (cartId) ? 'put' : 'post';
+  const id = (cartId) ? cartId : '';
 
   return {
     types: [ADD, ADD_SUCCESS, ADD_FAIL],
-    promise: () => marketcloud.carts.create({
-      items: [{ product_id: productId, quantity: quantity }]
+    promise: (client) => client[method](`/carts/${id}`, {
+      data: {
+        items: [{ product_id: productId, quantity: quantity }]
+      }
     })
   };
 }
 
 export function remove(itemId) {
   return { type: REMOVE, itemId };
-}
-
-export function update(itemId, quantity) {
-  return { type: UPDATE, itemId, quantity };
 }

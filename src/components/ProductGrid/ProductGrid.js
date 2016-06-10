@@ -23,7 +23,7 @@ export default class ProductGrid extends Component {
 
   render() {
     const { products, pushState } = this.props;
-    
+
     return (
       <div className={styles.container}>
         <Subheader className={styles.header}>Products</Subheader>
