@@ -1,18 +1,19 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { expect } from 'chai';
-import TestWrapper from './TestWrapper';
+import TestWrapper from 'utils/TestWrapper';
 
 import { ProductGrid } from 'components';
 import { GridList, GridTile } from 'material-ui/GridList';
 
+/* eslint-disable no-unused-expressions */
 describe('ProductGrid', () => {
   const mockStore = {
     products: {
       load: () => {},
       products: [
-        { id: 1, name: "Product #1", images: [], price: 7.9, price_discount: 6.9, stock_type: 'status' },
-        { id: 2, name: "Product #2", images: [], price: 7.9, stock_type: 'status' }
+        { id: 1, name: 'Product #1', images: [], price: 7.9, price_discount: 6.9, stock_type: 'status' },
+        { id: 2, name: 'Product #2', images: [], price: 7.9, stock_type: 'status' }
       ],
       loaded: false
     }

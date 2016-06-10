@@ -4,6 +4,7 @@ import { expect } from 'chai';
 
 import { Header } from 'components';
 
+/* eslint-disable no-unused-expressions */
 describe('Header', () => {
   const title = 'Hello world!';
   const subtitle = 'Chai is good.';
