@@ -7,7 +7,7 @@ import { ProductGrid } from 'components';
 import { GridList, GridTile } from 'material-ui/GridList';
 
 /* eslint-disable no-unused-expressions */
-describe('ProductGrid', () => {
+describe('ProductGrid', function() {
   const mockStore = {
     products: {
       load: () => {},
@@ -21,18 +21,18 @@ describe('ProductGrid', () => {
 
   const Testable = () => (<TestWrapper store={mockStore}><ProductGrid /></TestWrapper>);
 
-  it('should render correctly', () => {
+  it('should render correctly', function() {
     const wrapper = mount(<Testable />);
     expect(wrapper).to.be.ok;
     expect(wrapper.find(ProductGrid)).to.be.ok;
   });
 
-  it('should render a search bar', () => {
+  it('should render a search bar', function() {
     const wrapper = mount(<Testable />).find(ProductGrid);
     expect(wrapper.find('#product-search')).to.have.length(1);
   });
 
-  it('should render the products as GridTiles', () => {
+  it('should render the products as GridTiles', function() {
     const wrapper = mount(<Testable />).find(ProductGrid);
     expect(wrapper.find(GridList)).to.have.length(1);
     expect(wrapper.find(GridTile)).to.have.length(2);
