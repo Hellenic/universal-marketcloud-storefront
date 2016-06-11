@@ -28,7 +28,7 @@ export default class LandingBanner extends Component {
           icon={<FontIcon className="fa fa-github" />} />
         <FlatButton
           label="View demo"
-          href="http://karkk.ai//nen/universal-marketcloud-storefront"
+          href="http://karkk.ai:7998/"
           secondary
           linkButton
           icon={<Web />} />
