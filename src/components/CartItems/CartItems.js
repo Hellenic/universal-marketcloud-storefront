@@ -26,7 +26,7 @@ export default class CartItems extends Component {
         <TableBody>
           {
             items.map(item => (
-              <TableRow>
+              <TableRow key={item.id}>
                 <TableRowColumn>
                   <img className={styles.image} src={item.images[0]} alt={item.name} />
                 </TableRowColumn>
