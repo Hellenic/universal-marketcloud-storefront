@@ -5,7 +5,7 @@ import { asyncConnect } from 'redux-connect';
 import { isLoaded, load as loadPosts } from 'redux/modules/blog';
 
 @asyncConnect([{
-  deferred: true,
+  deferred: false,
   promise: ({ store: {dispatch, getState} }) => {
     if (!isLoaded(getState())) {
       return dispatch(loadPosts());
