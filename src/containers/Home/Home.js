@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { isLoaded as isProductsLoaded, load as loadProducts } from 'redux/modules/products';
 import { LandingBanner, ProductGrid } from 'components';
 import Helmet from 'react-helmet';
-import { asyncConnect } from 'redux-async-connect';
+import { asyncConnect } from 'redux-connect';
 
 @asyncConnect([{
   promise: ({ store: {dispatch, getState} }) => {

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { Header, Container, BlogPost, BlogPostList } from 'components';
-import { asyncConnect } from 'redux-async-connect';
+import { asyncConnect } from 'redux-connect';
 import { isLoaded, load as loadPosts } from 'redux/modules/blog';
 
 @asyncConnect([{

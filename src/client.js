@@ -6,41 +6,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
-import io from 'socket.io-client';
-import {Provider} from 'react-redux';
-import { Router, browserHistory } from 'react-router';
+import { Provider } from 'react-redux';
+import { applyRouterMiddleware, browserHistory, Router } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { ReduxAsyncConnect } from 'redux-async-connect';
-import useScroll from 'scroll-behavior/lib/useStandardScroll';
+import { ReduxAsyncConnect } from 'redux-connect';
+import useScroll from 'react-router-scroll';
 
 import getRoutes from './routes';
 
 const client = new ApiClient();
-const _browserHistory = useScroll(() => browserHistory)();
 const dest = document.getElementById('content');
-const store = createStore(_browserHistory, client, window.__data);
-const history = syncHistoryWithStore(_browserHistory, store);
-
-function initSocket() {
-  const socket = io('', {path: '/ws'});
-  socket.on('news', (data) => {
-    console.log(data);
-    socket.emit('my other event', { my: 'data from client' });
-  });
-  socket.on('msg', (data) => {
-    console.log(data);
-  });
-
-  return socket;
-}
-
-global.socket = initSocket();
+const store = createStore(browserHistory, client, window.__data);
+const history = syncHistoryWithStore(browserHistory, store);
 
 const component = (
   <Router render={(props) =>
-        <ReduxAsyncConnect {...props} helpers={{client}} filter={item => !item.deferred} />
-      } history={history}>
-    {getRoutes(store)}
+      <ReduxAsyncConnect {...props} helpers={{client}}
+        filter={item => !item.deferred} render={applyRouterMiddleware(useScroll())} />
+    } history={history}>
+      {getRoutes(store)}
   </Router>
 );
 
