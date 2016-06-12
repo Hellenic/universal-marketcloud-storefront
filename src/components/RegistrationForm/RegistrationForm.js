@@ -58,7 +58,7 @@ export default class RegistrationForm extends Component {
         <TextInput id="last-name" hintText="Last name" field={lastName} />
         <br />
         <TextInput id="email" hintText="E-Mail" field={email} errorText={emailError} />
-        { asyncValidating ? <CircularProgress size={0.5} /> : null }
+        {asyncValidating ? <CircularProgress size={0.5} /> : null}
         <br />
         <TextInput id="password" hintText="Password" field={password} type="password" /><br />
         <TextInput id="password-again" hintText="Repeat password" field={passwordRepeat} type="password" />

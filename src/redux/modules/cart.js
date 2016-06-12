@@ -40,15 +40,14 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 // Cart is created with POST, existing cart is updated with PUT
-export function add(productId, quantity = 1, cartId) {
+export function add(productId, quantity = 1, cartId = '') {
   const method = (cartId) ? 'put' : 'post';
-  const id = (cartId) ? cartId : '';
 
   return {
     types: [ADD, ADD_SUCCESS, ADD_FAIL],
-    promise: (client) => client[method](`/carts/${id}`, {
+    promise: (client) => client[method](`/carts/${cartId}`, {
       data: {
-        items: [{ product_id: productId, quantity: quantity }]
+        items: [{ product_id: productId, quantity }]
       }
     })
   };

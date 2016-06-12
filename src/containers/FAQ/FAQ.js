@@ -1,20 +1,17 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Helmet from 'react-helmet';
 import Subheader from 'material-ui/Subheader';
 import { Header, Container } from 'components';
 
-export default class FAQ extends Component {
+const FAQ = () => (
+  <div>
+    <Helmet title="FAQ" />
+    <Header title="FAQ" />
 
-  render() {
-    return (
-      <div>
-        <Helmet title="FAQ"/>
-        <Header title="FAQ" />
+    <Container>
+      <Subheader>Questions & answers will be gathered here.</Subheader>
+    </Container>
+  </div>
+);
 
-        <Container>
-          <Subheader>Questions & answers will be gathered here.</Subheader>
-        </Container>
-      </div>
-    );
-  }
-}
+export default FAQ;

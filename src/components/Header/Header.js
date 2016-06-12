@@ -8,7 +8,7 @@ const Header = (props) => {
   return (
     <div className={styles.container} style={{ backgroundColor: bgColor }}>
       <h1 className={styles.header} style={{ color: palette.alternateTextColor }}>{props.title}</h1>
-      { props.subtitle &&
+      {props.subtitle &&
         <h2 className={styles.subheader} style={{ color: palette.alternateTextColor }}>{props.subtitle}</h2>
       }
     </div>

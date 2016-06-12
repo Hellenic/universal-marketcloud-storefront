@@ -30,7 +30,7 @@
     "start-prod": "better-npm-run start-prod",
     "build": "better-npm-run build",
     "postinstall": "npm run build",
-    "lint": "eslint -c .eslintrc src",
+    "lint": "eslint -c .eslintrc src/",
     "start-dev": "better-npm-run start-dev",
     "watch-client": "better-npm-run watch-client",
     "dev": "concurrently --kill-others \"npm run watch-client\" \"npm run start-dev\"",

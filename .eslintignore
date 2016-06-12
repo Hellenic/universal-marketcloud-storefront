@@ -1,3 +1,4 @@
 webpack/*
+**/*.spec.js
 karma.conf.js
 tests.webpack.js

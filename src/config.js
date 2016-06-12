@@ -22,20 +22,20 @@ module.exports = Object.assign({
     head: {
       titleTemplate: 'Universal Marketcloud Storefront: %s',
       meta: [
-        {name: 'description', content: 'All the modern best practices in one eCommerce storefront.'},
-        {charset: 'utf-8'},
-        {property: 'apple-mobile-web-app-capable', content: 'yes'},
-        {property: 'apple-mobile-web-app-status-bar-style', content: 'black'},
-        {property: 'og:site_name', content: 'Universal Marketcloud Storefront'},
-        {property: 'og:image', content: 'https://react-redux.herokuapp.com/logo.jpg'},
-        {property: 'og:locale', content: 'en_US'},
-        {property: 'og:title', content: 'Universal Marketcloud Storefront'},
-        {property: 'og:description', content: 'All the modern best practices in one eCommerce storefront.'},
-        {property: 'og:card', content: 'summary'},
-        {property: 'og:site', content: '@hkarkk'},
-        {property: 'og:creator', content: '@hkarkk'},
-        {property: 'og:image:width', content: '200'},
-        {property: 'og:image:height', content: '200'}
+        { name: 'description', content: 'All the modern best practices in one eCommerce storefront.' },
+        { charset: 'utf-8' },
+        { property: 'apple-mobile-web-app-capable', content: 'yes' },
+        { property: 'apple-mobile-web-app-status-bar-style', content: 'black' },
+        { property: 'og:site_name', content: 'Universal Marketcloud Storefront' },
+        { property: 'og:image', content: 'https://react-redux.herokuapp.com/logo.jpg' },
+        { property: 'og:locale', content: 'en_US' },
+        { property: 'og:title', content: 'Universal Marketcloud Storefront' },
+        { property: 'og:description', content: 'All the modern best practices in one eCommerce storefront.' },
+        { property: 'og:card', content: 'summary' },
+        { property: 'og:site', content: '@hkarkk' },
+        { property: 'og:creator', content: '@hkarkk' },
+        { property: 'og:image:width', content: '200' },
+        { property: 'og:image:height', content: '200' }
       ]
     }
   },

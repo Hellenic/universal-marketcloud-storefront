@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import Helmet from 'react-helmet';
@@ -20,7 +20,7 @@ export default class Html extends Component {
   };
 
   render() {
-    const {assets, component, store} = this.props;
+    const { assets, component, store } = this.props;
     const content = component ? ReactDOM.renderToString(component) : '';
     const head = Helmet.rewind();
 
@@ -39,14 +39,13 @@ export default class Html extends Component {
           <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,500" rel="stylesheet" type="text/css" />
           {/* styles (will be present only in production with webpack extract text plugin) */}
           {Object.keys(assets.styles).map((style, key) =>
-            <link href={assets.styles[style]} key={key} media="screen, projection"
-                  rel="stylesheet" type="text/css" charSet="UTF-8"/>
+            <link href={assets.styles[style]} key={key} media="screen, projection" rel="stylesheet" type="text/css" charSet="UTF-8" />
           )}
         </head>
         <body>
-          <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
-          <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8"/>
-          <script src={assets.javascript.main} charSet="UTF-8"/>
+          <div id="content" dangerouslySetInnerHTML={{ __html: content }} />
+          <script dangerouslySetInnerHTML={{ __html: `window.__data=${serialize(store.getState())};` }} charSet="UTF-8" />
+          <script src={assets.javascript.main} charSet="UTF-8" />
         </body>
       </html>
     );

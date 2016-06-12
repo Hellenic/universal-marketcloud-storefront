@@ -18,13 +18,13 @@ export default class Cart extends Component {
 
     return (
       <div>
-        <Helmet title="Cart – Checkout #1"/>
+        <Helmet title="Cart – Checkout #1" />
         <Header title="Your products" />
         <CheckoutSteps activeIndex={0} />
 
         <Container>
-          { (items.length <= 0) && <Subheader>You do not have any products in your cart yet!</Subheader> }
-          { (items.length > 0) && <CartItems items={items} /> }
+          {(items.length <= 0) && <Subheader>You do not have any products in your cart yet!</Subheader>}
+          {(items.length > 0) && <CartItems items={items} />}
         </Container>
       </div>
     );

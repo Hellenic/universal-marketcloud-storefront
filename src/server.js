@@ -17,7 +17,7 @@ import { match } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect, loadOnServer } from 'redux-connect';
 import createHistory from 'react-router/lib/createMemoryHistory';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import getRoutes from './routes';
 
 const pretty = new PrettyError();
@@ -45,8 +45,8 @@ app.use((req, res) => {
   const history = syncHistoryWithStore(memoryHistory, store);
 
   function hydrateOnClient() {
-    res.send('<!doctype html>\n' +
-      ReactDOM.renderToString(<Html assets={webpackIsomorphicTools.assets()} store={store}/>));
+    const html = ReactDOM.renderToString(<Html assets={webpackIsomorphicTools.assets()} store={store} />);
+    res.send(`<!doctype html>\n${html}`);
   }
 
   if (__DISABLE_SSR__) {
@@ -57,12 +57,14 @@ app.use((req, res) => {
   match({ history, routes: getRoutes(store), location: req.originalUrl }, (error, redirectLocation, renderProps) => {
     if (redirectLocation) {
       res.redirect(redirectLocation.pathname + redirectLocation.search);
-    } else if (error) {
+    }
+    else if (error) {
       console.error('ROUTER ERROR:', pretty.render(error));
       res.status(500);
       hydrateOnClient();
-    } else if (renderProps) {
-      loadOnServer({...renderProps, store, helpers: {client}}).then(() => {
+    }
+    else if (renderProps) {
+      loadOnServer({ ...renderProps, store, helpers: { client } }).then(() => {
         const component = (
           <Provider store={store} key="provider">
             <ReduxAsyncConnect {...renderProps} />
@@ -71,12 +73,14 @@ app.use((req, res) => {
 
         res.status(200);
 
-        global.navigator = {userAgent: req.headers['user-agent']};
-
-        res.send('<!doctype html>\n' +
-          ReactDOM.renderToString(<Html assets={webpackIsomorphicTools.assets()} component={component} store={store}/>));
+        global.navigator = { userAgent: req.headers['user-agent'] };
+        const html = ReactDOM.renderToString(
+          <Html assets={webpackIsomorphicTools.assets()} component={component} store={store} />
+        );
+        res.send(`<!doctype html>\n${html}`);
       });
-    } else {
+    }
+    else {
       res.status(404).send('Not found');
     }
   });
@@ -90,6 +94,7 @@ if (config.port) {
     console.info('----\n==> ✅  %s is running, talking to API server at %s.', config.app.title, config.api.host);
     console.info('==> 💻  Open http://%s:%s in a browser to view the app.', config.host, config.port);
   });
-} else {
+}
+else {
   console.error('==>     ERROR: No PORT environment variable has been specified');
 }

@@ -16,14 +16,13 @@ import getRoutes from './routes';
 
 const client = new ApiClient();
 const dest = document.getElementById('content');
-const store = createStore(browserHistory, client, window.__data);
+const store = createStore(browserHistory, client, window.__data); // eslint-disable-line no-underscore-dangle
 const history = syncHistoryWithStore(browserHistory, store);
 
 const component = (
-  <Router render={(props) =>
-      <ReduxAsyncConnect {...props} helpers={{client}}
-        filter={item => !item.deferred} render={applyRouterMiddleware(useScroll())} />
-    } history={history}>
+  <Router render={(props) => (
+    <ReduxAsyncConnect {...props} helpers={{ client }} filter={item => !item.deferred} render={applyRouterMiddleware(useScroll())} />
+    )} history={history}>
       {getRoutes(store)}
   </Router>
 );

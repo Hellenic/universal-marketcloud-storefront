@@ -6,5 +6,4 @@ export function hasStock(product) {
       console.warn('Unhandled stock type, add it to utils/product.js', product.stock_type);
       return true;
   }
-  return false;
 }

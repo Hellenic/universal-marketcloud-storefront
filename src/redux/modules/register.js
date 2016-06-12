@@ -57,6 +57,6 @@ export function create(data) {
 export function isValidEmail(email) {
   return {
     types: [IS_VALID, IS_VALID_SUCCESS, IS_VALID_FAIL],
-    promise: client => client.get('/users/' + email)
+    promise: client => client.get(`/users/${email}`)
   };
 }

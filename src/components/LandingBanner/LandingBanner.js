@@ -15,7 +15,7 @@ export default class LandingBanner extends Component {
     return (
       <div className={styles.banner} style={{ backgroundColor: palette.primary2Color }}>
         <div className={styles.image}>
-          <img src={logoImage}/>
+          <img src={logoImage} alt={config.app.title} />
         </div>
         <h1 className={styles.header} style={{ color: palette.alternateTextColor }}>{config.app.title}</h1>
         <h2 className={styles.subheader} style={{ color: palette.alternateTextColor }}>{config.app.description}</h2>

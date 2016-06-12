@@ -1,5 +1,5 @@
 import React from 'react';
-import {IndexRoute, Route} from 'react-router';
+import { IndexRoute, Route } from 'react-router';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
 import {
     App,
@@ -19,7 +19,7 @@ import {
 export default (store) => {
   const requireLogin = (nextState, replace, cb) => {
     function checkAuth() {
-      const { auth: { user }} = store.getState();
+      const { auth: { user } } = store.getState();
       if (!user) {
         // oops, not logged in, so can't be here!
         replace('/');
@@ -29,7 +29,8 @@ export default (store) => {
 
     if (!isAuthLoaded(store.getState())) {
       store.dispatch(loadAuth()).then(checkAuth);
-    } else {
+    }
+    else {
       checkAuth();
     }
   };
@@ -39,27 +40,27 @@ export default (store) => {
    */
   return (
     <Route path="/" component={App}>
-      { /* Home (main) route */ }
-      <IndexRoute component={Home}/>
+      {/* Home (main) route */}
+      <IndexRoute component={Home} />
 
-      { /* Routes requiring login */ }
+      {/* Routes requiring login */}
       <Route onEnter={requireLogin}>
-        <Route path="account" component={Account}/>
+        <Route path="account" component={Account} />
       </Route>
 
-      { /* Routes */ }
-      <Route path="about" component={About}/>
+      {/* Routes */}
+      <Route path="about" component={About} />
       <Route path="blog" component={Blog}>
-        <Route path="/blog/:postId" component={Blog}/>
+        <Route path="/blog/:postId" component={Blog} />
       </Route>
-      <Route path="cart" component={Cart}/>
-      <Route path="contact" component={Contact}/>
-      <Route path="faq" component={FAQ}/>
-      <Route path="login" component={Login}/>
-      <Route path="/product/:productId*" component={ProductPage}/>
-      <Route path="register" component={Register}/>
+      <Route path="cart" component={Cart} />
+      <Route path="contact" component={Contact} />
+      <Route path="faq" component={FAQ} />
+      <Route path="login" component={Login} />
+      <Route path="/product/:productId*" component={ProductPage} />
+      <Route path="register" component={Register} />
 
-      { /* Catch all route */ }
+      {/* Catch all route */}
       <Route path="*" component={NotFound} status={404} />
     </Route>
   );

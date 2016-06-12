@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import * as authActions from 'redux/modules/auth';
 
@@ -46,10 +46,10 @@ export default class Login extends Component {
             <div>
               <TextField id="login-user" ref="username" name="username"
                 hintText="Username" errorText={(errors[0]) ? errors[0].message : ''}
-                onKeyDown={this.handleKeyDown.bind(this)} />
+                onKeyDown={() => this.handleKeyDown()} />
               <TextField id="login-pass" ref="password" name="password" type="password"
-                hintText="Password" onKeyDown={this.handleKeyDown.bind(this)} />
-              <FlatButton label="Login" primary onTouchTap={this.handleSubmit.bind(this)} />
+                hintText="Password" onKeyDown={() => this.handleKeyDown()} />
+              <FlatButton label="Login" primary onTouchTap={() => this.handleSubmit()} />
               <Subheader>Not registered yet? You can find <Link to="/register">registration here</Link>.</Subheader>
             </div>
           }

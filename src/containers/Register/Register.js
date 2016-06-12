@@ -33,8 +33,8 @@ export default class Register extends Component {
   render() {
     return (
       <div>
-        <Helmet title="Register"/>
-        <Header title="Register"/>
+        <Helmet title="Register" />
+        <Header title="Register" />
 
         <div style={{ margin: '2em 25%' }}>
           <p>
@@ -58,7 +58,7 @@ export default class Register extends Component {
 
             <Divider />
             <Subheader>Or register directly to our webshop</Subheader>
-            <RegistrationForm onSubmit={this.handleSubmit}/>
+            <RegistrationForm onSubmit={this.handleSubmit} />
           </div>
         </div>
       </div>

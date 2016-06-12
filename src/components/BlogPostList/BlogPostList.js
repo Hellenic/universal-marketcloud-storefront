@@ -35,7 +35,7 @@ export default class BlogPostList extends Component {
                 className={styles.tile}
                 onTouchTap={() => pushState(`/blog/${post.slug}`)}
                 cols={1} rows={1}>
-                <img src={post.author.image} />
+                <img src={post.author.image} alt={post.title} />
               </GridTile>
             ))
           }

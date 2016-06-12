@@ -29,7 +29,8 @@ export default class ProductGrid extends Component {
         <Subheader className={styles.header}>Products</Subheader>
         <TextField id="product-search" fullWidth
           hintText="Use anything: name, keyword, term, color, etc."
-          floatingLabelText="Search for the products" onChange={this.handleChange} />
+          floatingLabelText="Search for the products" onChange={this.handleChange}
+        />
         <GridList cellHeight={300} cols={4} className={styles.list}>
           {
             products.map(product => (
@@ -39,7 +40,7 @@ export default class ProductGrid extends Component {
                 subtitle={<PriceTag product={product} />}
                 actionIcon={<AddCartButton product={product} />}
                 className={styles.tile}>
-                <img src={product.images[0]} onTouchTap={() => pushState(`/product/${product.id}/${product.name}`)} />
+                <img src={product.images[0]} onTouchTap={() => pushState(`/product/${product.id}/${product.name}`)} alt={product.name} />
               </GridTile>
             ))
           }

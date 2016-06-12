@@ -4,11 +4,11 @@ import {
   grey100, grey300, grey400, grey500,
   white, darkBlack, fullBlack,
 } from 'material-ui/styles/colors';
-import {fade} from 'material-ui/utils/colorManipulator';
+import { fade } from 'material-ui/utils/colorManipulator';
 import spacing from 'material-ui/styles/spacing';
 
 export default {
-  spacing: spacing,
+  spacing,
   fontFamily: 'Roboto, sans-serif',
   palette: {
     primary1Color: indigo500,

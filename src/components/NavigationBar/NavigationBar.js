@@ -69,15 +69,15 @@ export default class NavigationBar extends Component {
     const { auth } = this.props;
     return (
       <div>
-        <IconButton onTouchTap={this.goto.bind(this, auth ? '/account' : '/login')}>
+        <IconButton onTouchTap={() => this.goto(auth ? '/account' : '/login')}>
           <Person color={theme.palette.accent2Color} />
         </IconButton>
-        { auth &&
-          <IconButton onTouchTap={this.goto.bind(this, '/favourites')}>
+        {auth &&
+          <IconButton onTouchTap={() => this.goto('/favourites')}>
             <Favorite color={theme.palette.accent2Color} />
           </IconButton>
         }
-        <IconButton onTouchTap={this.goto.bind(this, '/cart')}>
+        <IconButton onTouchTap={() => this.goto('/cart')}>
           <ShoppingCart color={theme.palette.accent1Color} />
         </IconButton>
       </div>
@@ -96,18 +96,18 @@ export default class NavigationBar extends Component {
           iconElementRight={this.renderActions()} />
 
         <Drawer docked={false} open={isOpen} onRequestChange={set}>
-          <MenuItem leftIcon={<Home />} onTouchTap={this.goto.bind(this, '/')} primaryText="Home" />
+          <MenuItem leftIcon={<Home />} onTouchTap={() => this.goto('/')} primaryText="Home" />
           <Divider />
-          <MenuItem leftIcon={<Forum />} onTouchTap={this.goto.bind(this, '/blog')} primaryText="Blog" />
-          <MenuItem leftIcon={<Forum />} onTouchTap={this.goto.bind(this, '/faq')} primaryText="FAQ" />
-          <MenuItem leftIcon={<Business />} onTouchTap={this.goto.bind(this, '/contact')} primaryText="Contact Us" />
-          <MenuItem leftIcon={<HelpOutline />} onTouchTap={this.goto.bind(this, '/about')} primaryText="About Us" />
+          <MenuItem leftIcon={<Forum />} onTouchTap={() => this.goto('/blog')} primaryText="Blog" />
+          <MenuItem leftIcon={<Forum />} onTouchTap={() => this.goto('/faq')} primaryText="FAQ" />
+          <MenuItem leftIcon={<Business />} onTouchTap={() => this.goto('/contact')} primaryText="Contact Us" />
+          <MenuItem leftIcon={<HelpOutline />} onTouchTap={() => this.goto('/about')} primaryText="About Us" />
           <Divider />
-          {!auth && <MenuItem leftIcon={<Person />} onTouchTap={this.goto.bind(this, '/login')} primaryText="Login" />}
-          {!auth && <MenuItem leftIcon={<Person />} onTouchTap={this.goto.bind(this, '/register')} primaryText="Register" />}
+          {!auth && <MenuItem leftIcon={<Person />} onTouchTap={() => this.goto('/login')} primaryText="Login" />}
+          {!auth && <MenuItem leftIcon={<Person />} onTouchTap={() => this.goto('/register')} primaryText="Register" />}
           {/* If logged in */}
-          {auth && <MenuItem leftIcon={<Person />} onTouchTap={this.goto.bind(this, '/account')} primaryText="Account" />}
-          {auth && <MenuItem leftIcon={<Person />} onTouchTap={this.logout.bind(this)} primaryText="Logout" />}
+          {auth && <MenuItem leftIcon={<Person />} onTouchTap={() => this.goto('/account')} primaryText="Account" />}
+          {auth && <MenuItem leftIcon={<Person />} onTouchTap={(event) => this.logout(event)} primaryText="Logout" />}
           {auth && <MenuItem><span>Logged in as {auth.name}</span></MenuItem>}
         </Drawer>
       </div>

@@ -10,10 +10,10 @@ export default class ProductGrid extends Component {
     const { product } = this.props;
     return (
       <div>
-        { !product.price_discount &&
+        {!product.price_discount &&
           <span><b>{product.price}</b> &euro;</span>
         }
-        { product.price_discount &&
+        {product.price_discount &&
           <span>
             <span className={styles.discountprice}><b>{product.price_discount}</b> &euro;</span>&nbsp;
             <span className={styles.oldprice}><b>{product.price}</b> &euro;</span>

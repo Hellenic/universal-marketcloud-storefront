@@ -6,7 +6,7 @@ import { isLoaded, load as loadPosts } from 'redux/modules/blog';
 
 @asyncConnect([{
   deferred: false,
-  promise: ({ store: {dispatch, getState} }) => {
+  promise: ({ store: { dispatch, getState } }) => { // eslint-disable-line react/prop-types
     if (!isLoaded(getState())) {
       return dispatch(loadPosts());
     }
@@ -22,11 +22,11 @@ export default class Blog extends Component {
 
     return (
       <div>
-        <Helmet title="Blog"/>
+        <Helmet title="Blog" />
         <Header title="Blog" />
 
         <Container>
-          { params.postId ? <BlogPost postId={params.postId} /> : <BlogPostList /> }
+          {params.postId ? <BlogPost postId={params.postId} /> : <BlogPostList />}
         </Container>
       </div>
     );

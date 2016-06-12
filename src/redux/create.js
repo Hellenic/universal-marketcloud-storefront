@@ -17,7 +17,8 @@ export default function createStore(history, client, data) {
       window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
       persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
     )(_createStore);
-  } else {
+  }
+  else {
     finalCreateStore = applyMiddleware(...middleware)(_createStore);
   }
 

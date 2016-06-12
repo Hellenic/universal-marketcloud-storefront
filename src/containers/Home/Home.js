@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 import { asyncConnect } from 'redux-connect';
 
 @asyncConnect([{
-  promise: ({ store: {dispatch, getState} }) => {
+  promise: ({ store: { dispatch, getState } }) => { // eslint-disable-line react/prop-types
     const promises = [];
     if (!isProductsLoaded(getState())) {
       promises.push(dispatch(loadProducts()));
@@ -17,7 +17,7 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <Helmet title="Home"/>
+        <Helmet title="Home" />
         <LandingBanner />
         <ProductGrid />
       </div>

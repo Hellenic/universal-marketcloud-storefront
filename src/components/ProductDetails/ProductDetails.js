@@ -8,10 +8,9 @@ export default class ProductDetails extends Component {
 
   render() {
     const { product } = this.props;
-    
     return (
       <div className={styles.container}>
-        <img src={product.images[0]} />
+        <img src={product.images[0]} alt={product.name} />
       </div>
     );
   }

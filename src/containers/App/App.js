@@ -39,7 +39,7 @@ export default class App extends Component {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme(customTheme)}>
         <div>
-          <Helmet {...config.app.head}/>
+          <Helmet {...config.app.head} />
           <NavigationBar />
 
           <div>

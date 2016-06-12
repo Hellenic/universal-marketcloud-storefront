@@ -26,12 +26,11 @@ export default function reducer(state = initialState, action = {}) {
         loggingIn: true
       };
     case LOGIN_SUCCESS:
-      const auth = action.result.data;
       return {
         ...state,
         loggingIn: false,
-        token: auth.token,
-        user: auth.user,
+        token: action.result.data.token,
+        user: action.result.data.user,
         errors: []
       };
     case LOGIN_FAIL:
@@ -57,7 +56,7 @@ export function load() {
 export function login(email, password) {
   return {
     types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
-    promise: (client) => client.post('/users/authenticate', { data: { email, password }})
+    promise: (client) => client.post('/users/authenticate', { data: { email, password } })
   };
 }
 
