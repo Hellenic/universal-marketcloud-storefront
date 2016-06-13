@@ -114,6 +114,8 @@
     "redux": "^3.0.4",
     "redux-connect": "^2.4.0",
     "redux-form": "^5.2.5",
+    "redux-storage": "^4.0.1",
+    "redux-storage-engine-localstorage": "^1.1.1",
     "serialize-javascript": "^1.1.2",
     "serve-favicon": "^2.3.0",
     "superagent": "^2.0.0",

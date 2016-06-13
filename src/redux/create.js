@@ -1,12 +1,16 @@
 import { createStore as _createStore, applyMiddleware, compose } from 'redux';
 import createMiddleware from './middleware/clientMiddleware';
 import { routerMiddleware } from 'react-router-redux';
+import * as storage from 'redux-storage';
+import createEngine from 'redux-storage-engine-localstorage';
 
 export default function createStore(history, client, data) {
   // Sync dispatched route actions to the history
   const reduxRouterMiddleware = routerMiddleware(history);
+  const engine = createEngine('marketcloud-storefront');
+  const persistanceMiddleware = storage.createMiddleware(engine);
 
-  const middleware = [createMiddleware(client), reduxRouterMiddleware];
+  const middleware = [createMiddleware(client), reduxRouterMiddleware, persistanceMiddleware];
 
   let finalCreateStore;
   if (__DEVELOPMENT__ && __CLIENT__ && __DEVTOOLS__) {
@@ -22,9 +26,13 @@ export default function createStore(history, client, data) {
     finalCreateStore = applyMiddleware(...middleware)(_createStore);
   }
 
-  const reducer = require('./modules/reducer');
+  const reducer = storage.reducer(require('./modules/reducer'));
   const store = finalCreateStore(reducer, data);
 
+  if (__CLIENT__) {
+    // TODO Add some validation e.g. if the store is older than X => discard
+    storage.createLoader(engine)(store);
+  }
 
   if (__DEVELOPMENT__ && module.hot) {
     module.hot.accept('./modules/reducer', () => {
