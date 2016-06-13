@@ -34,7 +34,11 @@
     "start-dev": "better-npm-run start-dev",
     "watch-client": "better-npm-run watch-client",
     "dev": "concurrently --kill-others \"npm run watch-client\" \"npm run start-dev\"",
-    "test": "karma start"
+    "test": "karma start",
+    "deploy": "npm run docker-build && npm run docker-stop && npm run docker-run",
+    "docker-build": "sudo docker build -t hellenic/universal-marketcloud-storefront .",
+    "docker-stop": "sudo docker stop $(sudo docker ps --filter=[image=hellenic/universal-marketcloud-storefront] -q)",
+    "docker-run": "sudo docker run -p 8880:8880 -d hellenic/universal-marketcloud-storefront"
   },
   "betterScripts": {
     "start-prod": {
