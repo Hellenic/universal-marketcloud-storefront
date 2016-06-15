@@ -1,39 +1,29 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import { getVisibleProducts } from 'redux/modules/products';
 import { GridList, GridTile } from 'material-ui/GridList';
 // import { getColumnCount } from 'utils/screen';
-import Subheader from 'material-ui/Subheader';
-import TextField from 'material-ui/TextField';
 
 import PriceTag from './PriceTag';
 import AddCartButton from './AddCartButton';
 import styles from './ProductGrid.scss';
 
-@connect(state => ({ products: state.products.products }), { pushState: push })
+@connect(state => ({ productState: state.products }), { pushState: push })
 export default class ProductGrid extends Component {
   static propTypes = {
-    products: PropTypes.array,
-    pushState: PropTypes.func
-  }
-
-  handleChange(event) {
-    console.log('Search:', event.target.value);
+    productState: PropTypes.object.isRequired,
+    pushState: PropTypes.func.isRequired
   }
 
   render() {
-    const { products, pushState } = this.props;
-    // const columns = Math.min(getColumnCount(300, 4), 4);
-
+    const { productState, pushState } = this.props;
+    const visibleProducts = getVisibleProducts(productState);
     return (
       <div className={styles.container}>
-        <Subheader className={styles.header}>Products</Subheader>
-        <TextField id="product-search" fullWidth
-          hintText="Use anything: name, keyword, term, color, etc."
-          floatingLabelText="Search for the products" onChange={this.handleChange} />
         <GridList cellHeight={300} cols={4} className={styles.list}>
           {
-            products.map(product => (
+            visibleProducts.map(product => (
               <GridTile
                 key={product.id}
                 title={product.name}

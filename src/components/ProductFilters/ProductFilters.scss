@@ -1,0 +1,30 @@
+.container {
+  display: 'flex';
+  flex-wrap: 'wrap';
+  justify-content: 'space-around';
+  margin: 1em 0.5em 2em 0.5em;
+}
+
+.header {
+  text-align: center;
+}
+
+.list {
+  overflow-y: 'auto';
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.discountprice {
+
+}
+.oldprice {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.tile {
+  img {
+    cursor: pointer;
+  }
+}

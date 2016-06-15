@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { isLoaded as isProductsLoaded, load as loadProducts } from 'redux/modules/products';
-import { LandingBanner, ProductGrid } from 'components';
-import Helmet from 'react-helmet';
 import { asyncConnect } from 'redux-connect';
+import { isLoaded as isProductsLoaded, load as loadProducts } from 'redux/modules/products';
+import { LandingBanner, ProductFilters, ProductGrid } from 'components';
+import Helmet from 'react-helmet';
 
 @asyncConnect([{
   promise: ({ store: { dispatch, getState } }) => { // eslint-disable-line react/prop-types
@@ -19,6 +19,7 @@ export default class Home extends Component {
       <div>
         <Helmet title="Home" />
         <LandingBanner />
+        <ProductFilters />
         <ProductGrid />
       </div>
     );
