@@ -4,7 +4,8 @@ const LOAD_FAIL = 'app/contents/LOAD_FAIL';
 
 const initialState = {
   posts: [],
-  loaded: false
+  loaded: false,
+  errors: []
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -26,7 +27,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: false,
-        error: action.error
+        errors: action.error.errors
       };
     default:
       return state;

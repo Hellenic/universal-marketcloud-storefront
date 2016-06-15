@@ -6,7 +6,8 @@ const APPLY_FILTER = 'app/products/APPLY_FILTER';
 const initialState = {
   products: [],
   filters: {},
-  loaded: false
+  loaded: false,
+  errors: []
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -28,7 +29,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: false,
-        error: action.error
+        errors: action.error.errors
       };
     case APPLY_FILTER:
       return {
