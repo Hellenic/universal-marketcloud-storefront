@@ -7,7 +7,7 @@ const CREATE_FAIL = 'app/register/CREATE_FAIL';
 
 const initialState = {
   created: false,
-  errors: []
+  error: {}
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -22,7 +22,7 @@ export default function reducer(state = initialState, action = {}) {
     case IS_VALID_FAIL:
       return {
         ...state,
-        errors: action.error.errors
+        error: action.error
       };
     case CREATE:
       return state;
@@ -35,7 +35,7 @@ export default function reducer(state = initialState, action = {}) {
     case CREATE_FAIL:
       return {
         ...state,
-        errors: action.error.errors
+        error: action.error
       };
     default:
       return state;

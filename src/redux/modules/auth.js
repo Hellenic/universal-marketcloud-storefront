@@ -8,7 +8,7 @@ const initialState = {
   loggingIn: false,
   token: null,
   user: null,
-  errors: []
+  error: {}
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -18,7 +18,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         token: null,
         user: null,
-        errors: []
+        error: {}
       };
     case LOGIN:
       return {
@@ -31,14 +31,14 @@ export default function reducer(state = initialState, action = {}) {
         loggingIn: false,
         token: action.result.data.token,
         user: action.result.data.user,
-        errors: []
+        error: {}
       };
     case LOGIN_FAIL:
       return {
         ...state,
         loggingIn: false,
         user: null,
-        errors: action.error.errors
+        error: action.error
       };
     case LOGOUT:
       return {

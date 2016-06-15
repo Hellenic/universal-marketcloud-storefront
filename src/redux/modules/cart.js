@@ -4,10 +4,10 @@ const ADD_FAIL = 'app/cart/ADD_FAIL';
 const REMOVE = 'app/cart/REMOVE';
 
 const initialState = {
-  loading: true,
+  loading: false,
   id: null,
   items: [],
-  errors: []
+  error: {}
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -17,18 +17,20 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loading: true
       };
-    case ADD_SUCCESS:
+    case ADD_SUCCESS: {
+      const data = action.result.data;
       return {
         ...state,
         loading: false,
-        id: action.result.data.id,
-        items: action.result.data.items
+        id: data.id,
+        items: data.items
       };
+    }
     case ADD_FAIL:
       return {
         ...state,
         loading: false,
-        errors: action.error.errors
+        error: action.error
       };
     case REMOVE:
       return {
