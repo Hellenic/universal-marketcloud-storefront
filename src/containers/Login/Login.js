@@ -35,8 +35,6 @@ export default class Login extends Component {
 
   render() {
     const { user, error, logout } = this.props;
-    console.log('Error', error);
-
     return (
       <div>
         <Helmet title="Login" />
@@ -47,10 +45,10 @@ export default class Login extends Component {
             <div>
               <Notification error={error} />
               <TextField id="login-user" ref="username" name="username"
-                hintText="Username" onKeyDown={() => this.handleKeyDown()} />
+                hintText="Username" onKeyDown={(ev) => this.handleKeyDown(ev)} />
               <TextField id="login-pass" ref="password" name="password" type="password"
-                hintText="Password" onKeyDown={() => this.handleKeyDown()} />
-              <FlatButton label="Login" primary onTouchTap={() => this.handleSubmit()} />
+                hintText="Password" onKeyDown={(ev) => this.handleKeyDown(ev)} />
+              <FlatButton label="Login" primary onTouchTap={(ev) => this.handleSubmit(ev)} />
               <Subheader>Not registered yet? You can find <Link to="/register">registration here</Link>.</Subheader>
             </div>
           }

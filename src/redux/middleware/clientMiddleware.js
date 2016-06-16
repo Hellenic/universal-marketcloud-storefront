@@ -1,3 +1,5 @@
+import { getMessage } from 'utils/errorParser';
+
 export default function clientMiddleware(client) {
   return ({ dispatch, getState }) => next => action => {
     if (typeof action === 'function') {
@@ -15,7 +17,7 @@ export default function clientMiddleware(client) {
     const actionPromise = promise(client);
     actionPromise.then(
       (result) => next({ ...rest, result, type: SUCCESS }),
-      (error) => next({ ...rest, error, type: FAILURE })
+      (error) => next({ ...rest, error: getMessage(error), type: FAILURE })
     ).catch((error) => {
       console.error('MIDDLEWARE ERROR:', error);
       next({ ...rest, error, type: FAILURE });
