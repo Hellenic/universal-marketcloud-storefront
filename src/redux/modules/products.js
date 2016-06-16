@@ -43,7 +43,7 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 export function getVisibleProducts(productState) {
-  if (productState.filters.text) {
+  if (productState.filters) {
     // Go through all the filters and apply them to products to reduce the results
     return Object.values(productState.filters).reduce((filtered, filter) => productState.products.filter(filter), []);
   }

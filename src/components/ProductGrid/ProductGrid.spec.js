@@ -27,11 +27,6 @@ describe('ProductGrid', function() {
     expect(wrapper.find(ProductGrid)).to.be.ok;
   });
 
-  it('should render a search bar', function() {
-    const wrapper = mount(<Testable />).find(ProductGrid);
-    expect(wrapper.find('#product-search')).to.have.length(1);
-  });
-
   it('should render the products as GridTiles', function() {
     const wrapper = mount(<Testable />).find(ProductGrid);
     expect(wrapper.find(GridList)).to.have.length(1);
