@@ -8,11 +8,11 @@ import styles from './BlogPost.scss';
   error: state.blog.error,
   loading: state.blog.loading
 }))
-export default class BlogPostList extends Component {
+export default class BlogPost extends Component {
   static propTypes = {
     postId: PropTypes.string,
     posts: PropTypes.array,
-    error: PropTypes.string,
+    error: PropTypes.object,
     loading: PropTypes.bool
   };
 

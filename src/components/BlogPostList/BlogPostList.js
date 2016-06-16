@@ -13,7 +13,7 @@ import styles from './BlogPostList.scss';
 export default class BlogPostList extends Component {
   static propTypes = {
     posts: PropTypes.array,
-    error: PropTypes.string,
+    error: PropTypes.object,
     loading: PropTypes.bool,
     pushState: PropTypes.func
   };
