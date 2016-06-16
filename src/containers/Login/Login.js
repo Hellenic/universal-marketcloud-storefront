@@ -7,7 +7,7 @@ import * as authActions from 'redux/modules/auth';
 import Subheader from 'material-ui/Subheader';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
-import { Header, Container } from 'components';
+import { Header, Container, Notification } from 'components';
 
 @connect(state => ({ user: state.auth.user, error: state.auth.error }), authActions)
 export default class Login extends Component {
@@ -35,6 +35,7 @@ export default class Login extends Component {
 
   render() {
     const { user, error, logout } = this.props;
+    console.log('Error', error);
 
     return (
       <div>
@@ -44,9 +45,9 @@ export default class Login extends Component {
         <Container>
           {!user &&
             <div>
+              <Notification error={error} />
               <TextField id="login-user" ref="username" name="username"
-                hintText="Username" errorText={(error) ? 'Error occurred' : ''}
-                onKeyDown={() => this.handleKeyDown()} />
+                hintText="Username" onKeyDown={() => this.handleKeyDown()} />
               <TextField id="login-pass" ref="password" name="password" type="password"
                 hintText="Password" onKeyDown={() => this.handleKeyDown()} />
               <FlatButton label="Login" primary onTouchTap={() => this.handleSubmit()} />

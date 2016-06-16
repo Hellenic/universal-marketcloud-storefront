@@ -17,4 +17,5 @@ export ProductFilters from './ProductFilters/ProductFilters';
 export ProductGrid from './ProductGrid/ProductGrid';
 export ProductDetails from './ProductDetails/ProductDetails';
 export RegistrationForm from './RegistrationForm/RegistrationForm';
+export Notification from './Notification/Notification';
 export Footer from './Footer/Footer';
