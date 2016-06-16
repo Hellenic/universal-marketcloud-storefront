@@ -50,7 +50,8 @@ export default class RegistrationForm extends Component {
     } = this.props;
 
     // TODO API is still not so clear about the errors, so this needs more work
-    const emailError = (state.errors.some(error => error.type === 'BadRequest')) ? 'Email is already in use.' : '';
+    const errors = (state.error && state.error.hasOwnProperty('errors')) ? state.error.errors : [];
+    const emailError = (errors.some(error => error.type === 'BadRequest')) ? 'Email is already in use.' : '';
 
     return (
       <form>
