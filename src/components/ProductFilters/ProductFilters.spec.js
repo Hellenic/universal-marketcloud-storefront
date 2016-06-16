@@ -3,11 +3,11 @@ import { mount } from 'enzyme';
 import { expect } from 'chai';
 import TestWrapper from 'utils/TestWrapper';
 
-import { ProductGrid } from 'components';
+import { ProductFilters } from 'components';
 import { GridList, GridTile } from 'material-ui/GridList';
 
 /* eslint-disable no-unused-expressions */
-describe('ProductGrid', function() {
+describe('ProductFilters', function() {
   const mockStore = {
     products: {
       load: () => {},
@@ -19,22 +19,16 @@ describe('ProductGrid', function() {
     }
   };
 
-  const Testable = () => (<TestWrapper store={mockStore}><ProductGrid /></TestWrapper>);
+  const Testable = () => (<TestWrapper store={mockStore}><ProductFilters /></TestWrapper>);
 
   it('should render correctly', function() {
     const wrapper = mount(<Testable />);
     expect(wrapper).to.be.ok;
-    expect(wrapper.find(ProductGrid)).to.be.ok;
+    expect(wrapper.find(ProductFilters)).to.be.ok;
   });
 
   it('should render a search bar', function() {
-    const wrapper = mount(<Testable />).find(ProductGrid);
+    const wrapper = mount(<Testable />).find(ProductFilters);
     expect(wrapper.find('#product-search')).to.have.length(1);
-  });
-
-  it('should render the products as GridTiles', function() {
-    const wrapper = mount(<Testable />).find(ProductGrid);
-    expect(wrapper.find(GridList)).to.have.length(1);
-    expect(wrapper.find(GridTile)).to.have.length(2);
   });
 });

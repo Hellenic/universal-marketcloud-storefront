@@ -15,6 +15,7 @@ describe('ProductGrid', function() {
         { id: 1, name: 'Product #1', images: [], price: 7.9, price_discount: 6.9, stock_type: 'status' },
         { id: 2, name: 'Product #2', images: [], price: 7.9, stock_type: 'status' }
       ],
+      filters: {},
       loaded: false
     }
   };

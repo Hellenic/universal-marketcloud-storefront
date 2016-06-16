@@ -34,7 +34,7 @@ export default class Login extends Component {
   }
 
   render() {
-    const { user, errors, logout } = this.props;
+    const { user, error, logout } = this.props;
 
     return (
       <div>
@@ -45,7 +45,7 @@ export default class Login extends Component {
           {!user &&
             <div>
               <TextField id="login-user" ref="username" name="username"
-                hintText="Username" errorText={(errors) ? 'Error occurred' : ''}
+                hintText="Username" errorText={(error) ? 'Error occurred' : ''}
                 onKeyDown={() => this.handleKeyDown()} />
               <TextField id="login-pass" ref="password" name="password" type="password"
                 hintText="Password" onKeyDown={() => this.handleKeyDown()} />
