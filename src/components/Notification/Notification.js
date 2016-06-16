@@ -5,7 +5,7 @@ import theme from '../../theme/mui-theme';
 
 function prepareData(props) {
   const { palette } = theme;
-  if (props.error) {
+  if (props.error.message) {
     return {
       background: palette.accent1Color,
       message: props.error.message
