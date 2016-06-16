@@ -5,8 +5,8 @@ import { getVisibleProducts } from 'redux/modules/products';
 import { GridList, GridTile } from 'material-ui/GridList';
 // import { getColumnCount } from 'utils/screen';
 
+import { AddCartButton } from 'components';
 import PriceTag from './PriceTag';
-import AddCartButton from './AddCartButton';
 import styles from './ProductGrid.scss';
 
 @connect(state => ({ productState: state.products }), { pushState: push })
@@ -29,8 +29,9 @@ export default class ProductGrid extends Component {
                 title={product.name}
                 subtitle={<PriceTag product={product} />}
                 actionIcon={<AddCartButton product={product} />}
-                className={styles.tile}>
-                <img src={product.images[0]} onTouchTap={() => pushState(`/product/${product.id}/${product.name}`)} alt={product.name} />
+                className={styles.tile}
+                onTouchTap={() => pushState(`/product/${product.id}/${product.name}`)}>
+                <img src={product.images[0]} alt={product.name} />
               </GridTile>
             ))
           }

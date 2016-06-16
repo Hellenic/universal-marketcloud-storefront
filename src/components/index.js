@@ -4,6 +4,7 @@
  *  ie: import { NavigationBar, Footer } from 'components';
  *
  */
+export AddCartButton from './AddCartButton/AddCartButton';
 export Header from './Header/Header';
 export BlogPost from './BlogPost/BlogPost';
 export BlogPostList from './BlogPostList/BlogPostList';

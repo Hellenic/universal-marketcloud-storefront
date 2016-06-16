@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import styles from './ProductDetails.scss';
+import { Container, AddCartButton } from 'components';
+// import styles from './ProductDetails.scss';
 
 export default class ProductDetails extends Component {
   static propTypes = {
@@ -9,9 +10,20 @@ export default class ProductDetails extends Component {
   render() {
     const { product } = this.props;
     return (
-      <div className={styles.container}>
+      <Container>
+        <h3>{product.name}</h3>
+        <p>{product.description}</p>
+        {product.display_price_discount ? (
+          <span>{product.display_price_discount} <del>{product.display_price}</del></span>
+        ) : (<span>Nope</span>)}
+        {product.manufacturer ? (
+          <p>Manufacturer: {product.manufacturer}</p>
+        ) : null}
+        <p>
+          <AddCartButton product={product} color="green" />
+        </p>
         <img src={product.images[0]} alt={product.name} />
-      </div>
+      </Container>
     );
   }
 }

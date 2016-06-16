@@ -13,7 +13,8 @@ export default class AddCartButton extends Component {
     cart: PropTypes.object,
     product: PropTypes.object.isRequired,
     add: PropTypes.func.isRequired,
-    displaySnack: PropTypes.func.isRequired
+    displaySnack: PropTypes.func.isRequired,
+    color: PropTypes.string
   }
 
   componentWillReceiveProps(nextProps) {
@@ -39,7 +40,7 @@ export default class AddCartButton extends Component {
   }
 
   render() {
-    const { product } = this.props;
+    const { product, color } = this.props;
     const hasStock = ProductUtils.hasStock(product);
     const tooltip = hasStock ? `Add one ${product.name} to cart.` : `${product.name} is out of stock`;
 
@@ -47,7 +48,7 @@ export default class AddCartButton extends Component {
       <IconButton disabled={!hasStock}
         onTouchTap={() => this.handleAdd(product, 1)}
         tooltip={<span>{tooltip}</span>} tooltipPosition="top-left">
-        <AddShoppingCart color="white" />
+        <AddShoppingCart color={color || 'white'} />
       </IconButton>
     );
   }

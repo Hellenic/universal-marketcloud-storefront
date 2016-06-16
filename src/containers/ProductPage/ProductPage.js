@@ -29,7 +29,7 @@ export default class ProductPage extends Component {
     return (
       <div>
         <Helmet title={product.name} />
-        <Header title={product.name} subtitle={product.display_discount_price || product.display_price} />
+        <Header title={product.name} subtitle={`by ${product.manufacturer}`} />
         <ProductDetails product={product} />
       </div>
     );
