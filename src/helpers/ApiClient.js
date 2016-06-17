@@ -1,7 +1,7 @@
 import superagent from 'superagent';
 import config from '../config';
 
-const methods = ['get', 'post', 'put', 'delete'];
+const methods = ['get', 'post', 'put', 'patch', 'delete'];
 
 function formatUrl(path) {
   let adjustedPath = (path[0] !== '/') ? `/${path}` : path;

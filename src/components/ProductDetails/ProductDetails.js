@@ -15,7 +15,7 @@ export default class ProductDetails extends Component {
         <p>{product.description}</p>
         {product.display_price_discount ? (
           <span>{product.display_price_discount} <del>{product.display_price}</del></span>
-        ) : (<span>Nope</span>)}
+        ) : (<span>{product.display_price}</span>)}
         {product.manufacturer ? (
           <p>Manufacturer: {product.manufacturer}</p>
         ) : null}

@@ -22,15 +22,26 @@ export default class AddCartButton extends Component {
     if (!(cart.loading && !nextProps.cart.loading)) {
       return;
     }
-    // TODO Make the messages pretty
-    if (nextProps.cart.error) {
-      console.log('Error', nextProps.cart.error);
+    if (nextProps.cart.error.message) {
       displaySnack('An error occurred. Please try again in a little while!', 3000);
     }
     else {
-      console.log('Was', cart.items, 'is now', nextProps.cart.items);
-      displaySnack('Product was added to the cart!', 3000);
+      const addedProducts = nextProps.cart.items.filter(item => (
+        !cart.items.some(oldItem => item.id === oldItem.id && item.quantity === oldItem.quantity)
+      ));
+      displaySnack(this.constructMessage(addedProducts), 4000);
     }
+  }
+  // TODO Make this beautiful.
+  constructMessage(addedProducts) {
+    if (addedProducts.length === 1) {
+      return `${addedProducts[0].name} was added to the cart!`;
+    }
+    else if (addedProducts.length > 1) {
+      return `${addedProducts.length} products were added to the cart!`;
+    }
+    // TODO Currently this will happen if the products is in the cart already. Quantity should be updated instead.
+    return 'Nothing was added to your cart. Something odd must have happened...';
   }
 
   handleAdd(product, quantity) {

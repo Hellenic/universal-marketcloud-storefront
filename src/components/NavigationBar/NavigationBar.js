@@ -44,12 +44,12 @@ export default class NavigationBar extends Component {
   componentWillReceiveProps(nextProps) {
     // Login in progress
     if (!this.props.auth && nextProps.auth) {
-      this.props.displaySnack('You have signed in!', 4000);
+      this.props.displaySnack('You have signed in!', 5000);
       this.props.pushState('/');
     }
     // Logging out
     else if (this.props.auth && !nextProps.auth) {
-      this.props.displaySnack('You have signed out!', 4000);
+      this.props.displaySnack('You have signed out!', 5000);
       this.props.pushState('/');
     }
   }
