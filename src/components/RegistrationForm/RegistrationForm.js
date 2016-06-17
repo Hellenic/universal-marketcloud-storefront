@@ -3,12 +3,13 @@ import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import RaisedButton from 'material-ui/RaisedButton';
+import { Notification } from 'components';
 import TextInput from './TextInput';
 
 import registrationValidation from './registrationValidation';
 import * as registerActions from 'redux/modules/register';
 
-@connect(state => ({ state: state.register }),
+@connect(state => ({ errorState: state.register }),
   dispatch => bindActionCreators(registerActions, dispatch)
 )
 @reduxForm({
@@ -18,7 +19,7 @@ import * as registerActions from 'redux/modules/register';
 })
 export default class RegistrationForm extends Component {
   static propTypes = {
-    state: PropTypes.object,
+    errorState: PropTypes.object,
     active: PropTypes.string,
     fields: PropTypes.object.isRequired,
     dirty: PropTypes.bool.isRequired,
@@ -34,29 +35,31 @@ export default class RegistrationForm extends Component {
       fields: { firstName, lastName, email, password, passwordRepeat },
       handleSubmit,
       resetForm,
-      state
+      errorState
     } = this.props;
 
     let emailError = '';
-    if (state.error.message) {
+    if (errorState.error.message) {
       // API errors are not 100% clear yet, this needs work.
-      emailError = (state.error.type === 'BadRequest') ? 'Email is already in use.' : state.error.message;
+      emailError = (errorState.error.type === 'BadRequest') ? 'Email is already in use.' : '';
     }
-
     return (
-      <form>
-        <TextInput id="first-name" hintText="First name" field={firstName} /><br />
-        <TextInput id="last-name" hintText="Last name" field={lastName} />
-        <br />
-        <TextInput id="email" hintText="E-Mail" field={email} errorText={emailError} />
-        <br />
-        <TextInput id="password" hintText="Password" field={password} type="password" /><br />
-        <TextInput id="password-again" hintText="Repeat password" field={passwordRepeat} type="password" />
-        <br />
-        <RaisedButton label="Register" primary onTouchTap={handleSubmit} />
-        {' '}
-        <RaisedButton label="Clear form" default onTouchTap={resetForm} />
-      </form>
+      <div>
+        <Notification error={errorState.error} />
+        <form>
+          <TextInput id="first-name" hintText="First name" field={firstName} /><br />
+          <TextInput id="last-name" hintText="Last name" field={lastName} />
+          <br />
+          <TextInput id="email" hintText="E-Mail" field={email} errorText={emailError} />
+          <br />
+          <TextInput id="password" hintText="Password" field={password} type="password" /><br />
+          <TextInput id="password-again" hintText="Repeat password" field={passwordRepeat} type="password" />
+          <br />
+          <RaisedButton label="Register" primary onTouchTap={handleSubmit} />
+          {' '}
+          <RaisedButton label="Clear form" default onTouchTap={resetForm} />
+        </form>
+      </div>
     );
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import Helmet from 'react-helmet';
 import { initialize } from 'redux-form';
 import { create } from 'redux/modules/register';
@@ -10,19 +11,22 @@ import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 
-@connect(state => ({ created: state.register.created }), { initialize, create, displaySnack })
+@connect(state => ({ created: state.register.created }), { initialize, create, displaySnack, pushState: push })
 export default class Register extends Component {
   static propTypes = {
     created: PropTypes.bool,
     initialize: PropTypes.func.isRequired,
     create: PropTypes.func.isRequired,
     displaySnack: PropTypes.func.isRequired,
+    pushState: PropTypes.func.isRequired
   }
 
   componentWillReceiveProps(nextProps) {
     if (!this.props.created && nextProps.created) {
-      this.props.initialize('registration', {});
-      this.props.displaySnack('You have registered into the webshop!', 4000);
+      // TODO Duplicate information with RegistrationForm
+      this.props.initialize('registration', {}, ['firstName', 'lastName', 'email', 'password', 'passwordRepeat']);
+      this.props.displaySnack('Registration successful! You may now sign in.', 5000);
+      this.props.pushState('/');
     }
   }
 

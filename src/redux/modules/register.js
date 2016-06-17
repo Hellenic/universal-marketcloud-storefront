@@ -1,6 +1,3 @@
-const IS_VALID = 'app/register/IS_VALID';
-const IS_VALID_SUCCESS = 'app/register/IS_VALID_SUCCESS';
-const IS_VALID_FAIL = 'app/register/IS_VALID_FAIL';
 const CREATE = 'app/register/CREATE';
 const CREATE_SUCCESS = 'app/register/CREATE_SUCCESS';
 const CREATE_FAIL = 'app/register/CREATE_FAIL';
@@ -12,20 +9,11 @@ const initialState = {
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case IS_VALID:
-      return state; // 'saving' flag handled by redux-form
-    case IS_VALID_SUCCESS:
-      return {
-        ...state,
-        errors: []
-      };
-    case IS_VALID_FAIL:
-      return {
-        ...state,
-        error: action.error
-      };
     case CREATE:
-      return state;
+      return {
+        ...state,
+        created: false
+      };
     case CREATE_SUCCESS:
       return {
         ...state,
@@ -35,6 +23,7 @@ export default function reducer(state = initialState, action = {}) {
     case CREATE_FAIL:
       return {
         ...state,
+        created: false,
         error: action.error
       };
     default:
@@ -51,12 +40,5 @@ export function create(data) {
   return {
     types: [CREATE, CREATE_SUCCESS, CREATE_FAIL],
     promise: client => client.post('/users', { data: customer })
-  };
-}
-
-export function isValidEmail(email) {
-  return {
-    types: [IS_VALID, IS_VALID_SUCCESS, IS_VALID_FAIL],
-    promise: client => client.get(`/users/${email}`)
   };
 }
