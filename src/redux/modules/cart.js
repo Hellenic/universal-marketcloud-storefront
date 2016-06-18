@@ -2,6 +2,8 @@ const ADD = 'app/cart/ADD';
 const ADD_SUCCESS = 'app/cart/ADD_SUCCESS';
 const ADD_FAIL = 'app/cart/ADD_FAIL';
 const REMOVE = 'app/cart/REMOVE';
+const REMOVE_SUCCESS = 'app/cart/REMOVE_SUCCESS';
+const REMOVE_FAIL = 'app/cart/REMOVE_FAIL';
 
 const initialState = {
   loading: false,
@@ -15,7 +17,8 @@ export default function reducer(state = initialState, action = {}) {
     case ADD:
       return {
         ...state,
-        loading: true
+        loading: true,
+        error: {}
       };
     case ADD_SUCCESS: {
       const data = action.result.data;
@@ -34,7 +37,21 @@ export default function reducer(state = initialState, action = {}) {
       };
     case REMOVE:
       return {
-        ...state
+        ...state,
+        loading: true,
+        error: {}
+      };
+    case REMOVE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        items: action.result.data.items
+      };
+    case REMOVE_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.error
       };
     default:
       return state;
@@ -49,13 +66,21 @@ export function add(productId, quantity = 1, cartId = '') {
     types: [ADD, ADD_SUCCESS, ADD_FAIL],
     promise: (client) => client[method](`/carts/${cartId}`, {
       data: {
-        op: 'update',
+        op: 'add',
         items: [{ product_id: productId, quantity }]
       }
     })
   };
 }
 
-export function remove(itemId) {
-  return { type: REMOVE, itemId };
+export function remove(productId, cartId = '') {
+  return {
+    types: [REMOVE, REMOVE_SUCCESS, REMOVE_FAIL],
+    promise: (client) => client.patch(`/carts/${cartId}`, {
+      data: {
+        op: 'remove',
+        items: [{ product_id: productId }]
+      }
+    })
+  };
 }
