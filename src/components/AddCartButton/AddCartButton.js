@@ -40,7 +40,7 @@ export default class AddCartButton extends Component {
     else if (addedProducts.length > 1) {
       return `${addedProducts.length} products were added to the cart!`;
     }
-    // TODO Currently this will happen if the products is in the cart already. Quantity should be updated instead.
+    console.error('Something odd happened while adding to cart!', this.props.cart, addedProducts);
     return 'Nothing was added to your cart. Something odd must have happened...';
   }
 
