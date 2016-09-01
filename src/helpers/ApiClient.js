@@ -18,16 +18,16 @@ function formatUrl(path) {
 export default class ApiClient {
   constructor() {
     methods.forEach((method) => {
-      this[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
+      this[method] = (path, { params, data, token } = {}) => new Promise((resolve, reject) => {
         const request = superagent[method](formatUrl(path));
-
         if (params) {
           request.query(params);
         }
 
         request.set('Content-Type', 'application/json');
         if (config.api.publicKey) {
-          request.set('Authorization', config.api.publicKey);
+          const authKey = (token) ? `${config.api.publicKey}:${token}` : config.api.publicKey;
+          request.set('Authorization', authKey);
         }
 
         if (data) {

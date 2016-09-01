@@ -1,4 +1,6 @@
 const LOAD = 'app/auth/LOAD';
+const LOAD_SUCCESS = 'app/auth/LOAD_SUCCESS';
+const LOAD_FAIL = 'app/auth/LOAD_FAIL';
 const LOGIN = 'app/auth/LOGIN';
 const LOGIN_SUCCESS = 'app/auth/LOGIN_SUCCESS';
 const LOGIN_FAIL = 'app/auth/LOGIN_FAIL';
@@ -16,9 +18,20 @@ export default function reducer(state = initialState, action = {}) {
     case LOAD:
       return {
         ...state,
-        token: null,
-        user: null,
+        loading: true
+      };
+    case LOAD_SUCCESS:
+      return {
+        ...state,
+        user: action.result.data,
+        loading: false,
         error: {}
+      };
+    case LOAD_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.error
       };
     case LOGIN:
       return {
@@ -50,8 +63,11 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
-export function load() {
-  return { type: LOAD };
+export function load(id, token) {
+  return {
+    types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
+    promise: (client) => client.get(`/users/${id}`, { token })
+  };
 }
 
 export function login(email, password) {

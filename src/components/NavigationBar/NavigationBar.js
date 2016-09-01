@@ -108,7 +108,6 @@ export default class NavigationBar extends Component {
           {/* If logged in */}
           {auth && <MenuItem leftIcon={<Person />} onTouchTap={() => this.goto('/account')} primaryText="Account" />}
           {auth && <MenuItem leftIcon={<Person />} onTouchTap={(event) => this.logout(event)} primaryText="Logout" />}
-          {auth && <MenuItem><span>Logged in as {auth.name}</span></MenuItem>}
         </Drawer>
       </div>
     );

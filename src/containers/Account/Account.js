@@ -1,16 +1,24 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { load as loadDetails } from 'redux/modules/auth';
 import Helmet from 'react-helmet';
 import Subheader from 'material-ui/Subheader';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import { Header, Container, Notification } from 'components';
 
-@connect(state => ({ user: state.auth.user, error: state.auth.error }))
+@connect(state => ({ user: state.auth.user, token: state.auth.token, error: state.auth.error }), { loadDetails })
 export default class Account extends Component {
   static propTypes = {
-    user: PropTypes.object,
-    error: PropTypes.object
+    user: PropTypes.object.isRequired,
+    token: PropTypes.string.isRequired,
+    error: PropTypes.object,
+    loadDetails: PropTypes.func.isRequired
+  }
+
+  constructor(props) {
+    super(props);
+    this.props.loadDetails(props.user.id, props.token);
   }
 
   render() {
