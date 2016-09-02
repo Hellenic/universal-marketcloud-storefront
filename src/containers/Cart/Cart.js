@@ -5,13 +5,14 @@ import Divider from 'material-ui/Divider';
 import { Header, Container, CartItems, CheckoutSteps, CheckoutNavigation } from 'components';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { remove } from 'redux/modules/cart';
+import { add, remove } from 'redux/modules/cart';
 import { display as displaySnack } from 'redux/modules/snackbar';
 
-@connect(state => ({ cart: state.cart }), { push, remove, displaySnack })
+@connect(state => ({ cart: state.cart }), { push, add, remove, displaySnack })
 export default class Cart extends Component {
   static propTypes = {
     cart: PropTypes.object,
+    add: PropTypes.func.isRequired,
     remove: PropTypes.func.isRequired,
     displaySnack: PropTypes.func.isRequired,
     push: PropTypes.func.isRequired
@@ -21,6 +22,15 @@ export default class Cart extends Component {
     if (this.props.cart.items.length > nextProps.cart.items.length) {
       this.props.displaySnack('Product was removed from your cart.');
     }
+  }
+
+  handleUpdate(item, qty) {
+    if (isNaN(qty) || qty <= 0 && qty > 999) {
+      this.props.displaySnack('Given quantity is not valid.');
+      return;
+    }
+
+    this.props.add(item.id, qty, this.props.cart.id);
   }
 
   handleRemove(item) {
@@ -41,7 +51,7 @@ export default class Cart extends Component {
             (cart.items.length <= 0) ?
               <Subheader>You do not have any products in your cart yet!</Subheader> :
               <div>
-                <CartItems cart={cart} onRemove={(item) => this.handleRemove(item)} />
+                <CartItems cart={cart} onRemove={(item) => this.handleRemove(item)} onUpdate={(item, qty) => this.handleUpdate(item, qty)} />
                 <Divider style={{ marginBottom: '2em' }} />
                 <CheckoutNavigation activeIndex={0} onNext={() => push('/checkout/shipping')} />
               </div>
