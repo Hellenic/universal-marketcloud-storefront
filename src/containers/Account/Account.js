@@ -33,6 +33,7 @@ export default class Account extends Component {
           <Subheader>Hello {user.name || user.email}! These are details for your account.</Subheader>
           <TextField ref="username" name="username" defaultValue={user.email} floatingLabelText="Username" /><br />
           <TextField ref="name" name="name" defaultValue={user.name} floatingLabelText="Name" /><br />
+          <Subheader><small>Account created {user.created_at}</small></Subheader>
           <FlatButton label="Update" disabled />
         </Container>
       </div>

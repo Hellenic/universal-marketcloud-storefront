@@ -12,3 +12,6 @@ export Register from './Register/Register';
 export Account from './Account/Account';
 
 export Cart from './Cart/Cart';
+export Shipping from './Checkout/Shipping';
+export Payment from './Checkout/Payment';
+export Confirmation from './Checkout/Confirmation';

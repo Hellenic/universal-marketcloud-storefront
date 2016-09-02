@@ -2,7 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
+import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import AddCircle from 'material-ui/svg-icons/content/add-circle';
+import RemoveCircle from 'material-ui/svg-icons/content/remove-circle';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import styles from './CartItems.scss';
 
@@ -39,7 +42,11 @@ export default class CartItems extends Component {
                   {item.name}
                 </TableRowColumn>
                 <TableRowColumn>{item.price}</TableRowColumn>
-                <TableRowColumn>{item.quantity}</TableRowColumn>
+                <TableRowColumn>
+                  <FlatButton icon={<RemoveCircle />} primary onTouchTap={(that) => console.log('Ref', that)} />&nbsp;
+                  <TextField defaultValue={item.quantity} style={{ width: '15%', textAlign: 'center' }} />&nbsp;
+                  <FlatButton icon={<AddCircle />} primary />
+                </TableRowColumn>
                 <TableRowColumn>{item.price * item.quantity}</TableRowColumn>
                 <TableRowColumn>
                   <FlatButton icon={<ActionDelete />} linkButton secondary onTouchTap={() => this.props.onRemove(item)} />

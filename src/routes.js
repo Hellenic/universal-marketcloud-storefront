@@ -13,9 +13,11 @@ import {
     Login,
     Register,
     Account,
-    Cart
+    Cart,
+    Shipping,
+    Payment,
+    Confirmation
   } from 'containers';
-
 export default (store) => {
   const requireLogin = (nextState, replace, cb) => {
     const { auth: { user } } = store.getState();
@@ -45,6 +47,11 @@ export default (store) => {
         <Route path="/blog/:postId" component={Blog} />
       </Route>
       <Route path="cart" component={Cart} />
+      <Route path="checkout">
+        <Route path="/checkout/shipping" component={Shipping} />
+        <Route path="/checkout/payment" component={Payment} />
+        <Route path="/checkout/confirmation" component={Confirmation} />
+      </Route>
       <Route path="contact" component={Contact} />
       <Route path="faq" component={FAQ} />
       <Route path="login" component={Login} />

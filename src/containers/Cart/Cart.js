@@ -1,18 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import Subheader from 'material-ui/Subheader';
-
-import { Header, Container, CartItems, CheckoutSteps } from 'components';
+import Divider from 'material-ui/Divider';
+import { Header, Container, CartItems, CheckoutSteps, CheckoutNavigation } from 'components';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import { remove } from 'redux/modules/cart';
 import { display as displaySnack } from 'redux/modules/snackbar';
 
-@connect(state => ({ cart: state.cart }), { remove, displaySnack })
+@connect(state => ({ cart: state.cart }), { push, remove, displaySnack })
 export default class Cart extends Component {
   static propTypes = {
     cart: PropTypes.object,
     remove: PropTypes.func.isRequired,
-    displaySnack: PropTypes.func.isRequired
+    displaySnack: PropTypes.func.isRequired,
+    push: PropTypes.func.isRequired
   }
 
   componentWillReceiveProps(nextProps) {
@@ -26,7 +28,7 @@ export default class Cart extends Component {
   }
 
   render() {
-    const { cart } = this.props;
+    const { cart, push } = this.props;
 
     return (
       <div>
@@ -35,8 +37,15 @@ export default class Cart extends Component {
         <CheckoutSteps activeIndex={0} />
 
         <Container>
-          {(cart.items.length <= 0) && <Subheader>You do not have any products in your cart yet!</Subheader>}
-          {(cart.items.length > 0) && <CartItems cart={cart} onRemove={(item) => this.handleRemove(item)} />}
+          {
+            (cart.items.length <= 0) ?
+              <Subheader>You do not have any products in your cart yet!</Subheader> :
+              <div>
+                <CartItems cart={cart} onRemove={(item) => this.handleRemove(item)} />
+                <Divider style={{ marginBottom: '2em' }} />
+                <CheckoutNavigation activeIndex={0} onNext={() => push('/checkout/shipping')} />
+              </div>
+          }
         </Container>
       </div>
     );
