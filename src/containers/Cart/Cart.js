@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import Subheader from 'material-ui/Subheader';
 import Divider from 'material-ui/Divider';
-import { Header, Container, CartItems, CheckoutSteps, CheckoutNavigation } from 'components';
+import { Header, Container, CartItems, CartTotals, CheckoutSteps, CheckoutNavigation } from 'components';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { add, remove } from 'redux/modules/cart';
@@ -49,10 +49,14 @@ export default class Cart extends Component {
         <Container>
           {
             (cart.items.length <= 0) ?
-              <Subheader>You do not have any products in your cart yet!</Subheader> :
+              <div>
+                <Subheader>You do not have any products in your cart yet!</Subheader>
+              </div> :
               <div>
                 <CartItems cart={cart} onRemove={(item) => this.handleRemove(item)} onUpdate={(item, qty) => this.handleUpdate(item, qty)} />
-                <Divider style={{ marginBottom: '2em' }} />
+                <Divider style={{ marginTop: '2em' }} />
+                <CartTotals cart={cart} />
+                <Divider style={{ marginTop: '2em', marginBottom: '2em' }} />
                 <CheckoutNavigation activeIndex={0} onNext={() => push('/checkout/shipping')} />
               </div>
           }

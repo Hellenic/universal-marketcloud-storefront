@@ -9,6 +9,7 @@ export Header from './Header/Header';
 export BlogPost from './BlogPost/BlogPost';
 export BlogPostList from './BlogPostList/BlogPostList';
 export CartItems from './Cart/CartItems';
+export CartTotals from './Cart/CartTotals';
 export CheckoutSteps from './Checkout/Steps';
 export CheckoutNavigation from './Checkout/Navigation';
 export Container from './Container/Container';
