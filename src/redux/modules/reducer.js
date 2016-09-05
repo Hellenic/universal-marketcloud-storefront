@@ -7,6 +7,8 @@ import { reducer as form } from 'redux-form';
 import auth from './auth';
 import blog from './blog';
 import cart from './cart';
+import shipping from './shipping';
+
 import register from './register';
 import drawer from './drawer';
 import products from './products';
@@ -18,6 +20,7 @@ export default combineReducers({
   auth,
   blog,
   cart,
+  shipping,
   drawer,
   snackbar,
   form,

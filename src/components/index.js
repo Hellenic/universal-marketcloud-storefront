@@ -12,6 +12,8 @@ export CartItems from './Cart/CartItems';
 export CartTotals from './Cart/CartTotals';
 export CheckoutSteps from './Checkout/Steps';
 export CheckoutNavigation from './Checkout/Navigation';
+export ShippingMethods from './Checkout/ShippingMethods';
+
 export Container from './Container/Container';
 export LandingBanner from './LandingBanner/LandingBanner';
 export NavigationBar from './NavigationBar/NavigationBar';
