@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import Helmet from 'react-helmet';
+import theme from '../theme/mui-theme';
 
 /**
  * Wrapper component containing HTML metadata and boilerplate tags.
@@ -21,6 +22,7 @@ export default class Html extends Component {
 
   render() {
     const { assets, component, store } = this.props;
+    const { palette } = theme;
     const content = component ? ReactDOM.renderToString(component) : '';
     const head = Helmet.rewind();
 
@@ -36,6 +38,10 @@ export default class Html extends Component {
           <link rel="shortcut icon" href="/favicon.ico" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
+          <meta name="theme-color" content={palette.primary1Color} />
+          <meta name="msapplication-navbutton-color" content={palette.primary1Color} />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
           <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,500" rel="stylesheet" type="text/css" />
           {/* styles (will be present only in production with webpack extract text plugin) */}
           {Object.keys(assets.styles).map((style, key) =>
