@@ -42,6 +42,7 @@ export default class Html extends Component {
           <meta name="msapplication-navbutton-color" content={palette.primary1Color} />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+          <link rel="manifest" href="/manifest.json" />
           <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,500" rel="stylesheet" type="text/css" />
           {/* styles (will be present only in production with webpack extract text plugin) */}
           {Object.keys(assets.styles).map((style, key) =>
