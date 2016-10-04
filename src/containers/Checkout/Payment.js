@@ -4,13 +4,11 @@ import Subheader from 'material-ui/Subheader';
 import { Header, Container, CheckoutSteps, CheckoutNavigation } from 'components';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { display as displaySnack } from 'redux/modules/snackbar';
 
-@connect(() => ({}), { push, displaySnack })
+@connect(() => ({}), { push })
 export default class Shipping extends Component {
   static propTypes = {
-    push: PropTypes.func.isRequired,
-    displaySnack: PropTypes.func.isRequired
+    push: PropTypes.func.isRequired
   }
 
   render() {

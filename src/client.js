@@ -4,14 +4,14 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import createStore from './redux/create';
-import ApiClient from './helpers/ApiClient';
 import { Provider } from 'react-redux';
 import { applyRouterMiddleware, browserHistory, Router } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-connect';
 import { useScroll } from 'react-router-scroll';
 
+import ApiClient from './helpers/ApiClient';
+import createStore from './redux/create';
 import getRoutes from './routes';
 
 const client = new ApiClient();
@@ -20,10 +20,13 @@ const store = createStore(browserHistory, client, window.__data); // eslint-disa
 const history = syncHistoryWithStore(browserHistory, store);
 
 const component = (
-  <Router render={(props) => (
-    <ReduxAsyncConnect {...props} helpers={{ client }} filter={item => !item.deferred} render={applyRouterMiddleware(useScroll())} />
-    )} history={history}>
-      {getRoutes(store)}
+  <Router
+    render={props => (
+      <ReduxAsyncConnect {...props} helpers={{ client }} filter={item => !item.deferred} render={applyRouterMiddleware(useScroll())} />
+    )}
+    history={history}
+  >
+    {getRoutes(store)}
   </Router>
 );
 

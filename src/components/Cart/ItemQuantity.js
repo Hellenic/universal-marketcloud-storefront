@@ -14,12 +14,22 @@ export default class CartItemQuantity extends Component {
     const { item, onUpdate } = this.props;
     return (
       <div>
-        <FlatButton icon={<RemoveCircle />} primary
-          onTouchTap={() => onUpdate(item, item.quantity - 1)} />&nbsp;
-        <TextField id={`${item.id}-quantity`} value={item.quantity} style={{ width: '15%', textAlign: 'center' }}
-          onChange={(event) => onUpdate(item, event.target.value)} />&nbsp;
-        <FlatButton icon={<AddCircle />} primary
-          onTouchTap={() => onUpdate(item, item.quantity + 1)} />
+        <FlatButton
+          icon={<RemoveCircle />}
+          primary
+          onTouchTap={() => onUpdate(item, item.quantity - 1)}
+        />&nbsp;
+        <TextField
+          id={`${item.id}-quantity`}
+          value={item.quantity}
+          style={{ width: '15%', textAlign: 'center' }}
+          onChange={event => onUpdate(item, event.target.value)}
+        />&nbsp;
+        <FlatButton
+          icon={<AddCircle />}
+          primary
+          onTouchTap={() => onUpdate(item, item.quantity + 1)}
+        />
       </div>
     );
   }

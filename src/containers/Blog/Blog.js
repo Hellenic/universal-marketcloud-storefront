@@ -6,7 +6,7 @@ import { isLoaded, load as loadPosts } from 'redux/modules/blog';
 
 @asyncConnect([{
   deferred: false,
-  promise: ({ store: { dispatch, getState } }) => { // eslint-disable-line react/prop-types
+  promise: ({ store: { dispatch, getState } }) => {
     if (!isLoaded(getState())) {
       return dispatch(loadPosts());
     }

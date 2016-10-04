@@ -22,9 +22,13 @@ export default class ProductFilters extends Component {
     // TODO Filtering will happen now onChange event, which is very slow
     return (
       <div className={styles.container}>
-        <TextField id="product-search" fullWidth
+        <TextField
+          id="product-search"
+          fullWidth
           hintText="Search products by name"
-          floatingLabelText="Search for the products" onChange={(event) => this.handleChange('text', event.target.value)} />
+          floatingLabelText="Search for the products"
+          onChange={event => this.handleChange('text', event.target.value)}
+        />
       </div>
     );
   }

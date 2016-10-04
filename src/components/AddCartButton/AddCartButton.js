@@ -56,9 +56,11 @@ export default class AddCartButton extends Component {
     const tooltip = hasStock ? `Add one ${product.name} to cart.` : `${product.name} is out of stock`;
 
     return (
-      <IconButton disabled={!hasStock}
+      <IconButton
+        disabled={!hasStock}
         onTouchTap={() => this.handleAdd(product, 1)}
-        tooltip={<span>{tooltip}</span>} tooltipPosition="top-left">
+        tooltip={<span>{tooltip}</span>} tooltipPosition="top-left"
+      >
         <AddShoppingCart color={color || 'white'} />
       </IconButton>
     );

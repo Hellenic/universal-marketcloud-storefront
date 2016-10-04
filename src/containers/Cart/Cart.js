@@ -25,8 +25,13 @@ export default class Cart extends Component {
   }
 
   handleUpdate(item, qty) {
-    if (isNaN(qty) || qty <= 0 && qty > 999) {
+    if (isNaN(qty)) {
       this.props.displaySnack('Given quantity is not valid.');
+      return;
+    }
+
+    if (qty <= 0 && qty > 999) {
+      this.props.displaySnack('Quantity should be between 0 and 999.');
       return;
     }
 
@@ -53,7 +58,7 @@ export default class Cart extends Component {
                 <Subheader>You do not have any products in your cart yet!</Subheader>
               </div> :
               <div>
-                <CartItems cart={cart} onRemove={(item) => this.handleRemove(item)} onUpdate={(item, qty) => this.handleUpdate(item, qty)} />
+                <CartItems cart={cart} onRemove={item => this.handleRemove(item)} onUpdate={(item, qty) => this.handleUpdate(item, qty)} />
                 <Divider style={{ marginTop: '2em' }} />
                 <CartTotals cart={cart} />
                 <Divider style={{ marginTop: '2em', marginBottom: '2em' }} />

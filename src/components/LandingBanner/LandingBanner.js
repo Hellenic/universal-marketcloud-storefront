@@ -24,14 +24,14 @@ export default class LandingBanner extends Component {
           label="View on Github"
           href="https://github.com/hellenic/universal-marketcloud-storefront"
           secondary
-          linkButton
-          icon={<FontIcon className="fa fa-github" />} />
+          icon={<FontIcon className="fa fa-github" />}
+        />
         <FlatButton
           label="View demo"
           href="http://karkk.ai:7998/"
           secondary
-          linkButton
-          icon={<Web />} />
+          icon={<Web />}
+        />
       </div>
     );
   }

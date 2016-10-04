@@ -27,7 +27,7 @@ export default class Html extends Component {
     const head = Helmet.rewind();
 
     return (
-      <html lang="en-us">
+      <html lang="en">
         <head>
           {head.base.toComponent()}
           {head.title.toComponent()}
@@ -50,7 +50,9 @@ export default class Html extends Component {
           )}
         </head>
         <body>
+          {/* eslint react/no-danger: "off" */}
           <div id="content" dangerouslySetInnerHTML={{ __html: content }} />
+          {/* eslint react/no-danger: "off" */}
           <script dangerouslySetInnerHTML={{ __html: `window.__data=${serialize(store.getState())};` }} charSet="UTF-8" />
           <script src={assets.javascript.main} charSet="UTF-8" />
         </body>

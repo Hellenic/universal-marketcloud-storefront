@@ -5,9 +5,15 @@ const TextInput = (props) => {
   const { id, hintText, floatText, errorText, type, fullWidth, field } = props;
   const fieldError = (field.error && field.touched) ? field.error : '';
   return (
-    <TextField id={id} hintText={hintText} errorText={errorText || fieldError}
-      floatingLabelText={floatText} fullWidth={fullWidth}
-      type={type} value="" {...field} />
+    <TextField
+      id={id}
+      hintText={hintText}
+      errorText={errorText || fieldError}
+      floatingLabelText={floatText}
+      fullWidth={fullWidth}
+      type={type}
+      value="" {...field}
+    />
   );
 };
 

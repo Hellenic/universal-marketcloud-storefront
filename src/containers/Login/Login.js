@@ -26,8 +26,8 @@ export default class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const user = this.refs.username;
-    const pass = this.refs.password;
+    const user = this.username;
+    const pass = this.password;
     this.props.login(user.input.value, pass.input.value);
     user.input.value = '';
     pass.input.value = '';
@@ -44,11 +44,22 @@ export default class Login extends Component {
           {!user &&
             <div>
               <Notification error={error} />
-              <TextField id="login-user" ref="username" name="username"
-                hintText="Username" onKeyDown={(ev) => this.handleKeyDown(ev)} />
-              <TextField id="login-pass" ref="password" name="password" type="password"
-                hintText="Password" onKeyDown={(ev) => this.handleKeyDown(ev)} />
-              <FlatButton label="Login" primary onTouchTap={(ev) => this.handleSubmit(ev)} />
+              <TextField
+                id="login-user"
+                ref={(input) => { this.username = input; }}
+                name="username"
+                hintText="Username"
+                onKeyDown={ev => this.handleKeyDown(ev)}
+              />
+              <TextField
+                id="login-pass"
+                ref={(input) => { this.password = input; }}
+                name="password"
+                type="password"
+                hintText="Password"
+                onKeyDown={ev => this.handleKeyDown(ev)}
+              />
+              <FlatButton label="Login" primary onTouchTap={ev => this.handleSubmit(ev)} />
               <Subheader>Not registered yet? You can find <Link to="/register">registration here</Link>.</Subheader>
             </div>
           }

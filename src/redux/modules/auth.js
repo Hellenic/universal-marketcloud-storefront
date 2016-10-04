@@ -66,14 +66,14 @@ export default function reducer(state = initialState, action = {}) {
 export function load(id, token) {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get(`/users/${id}`, { token })
+    promise: client => client.get(`/users/${id}`, { token })
   };
 }
 
 export function login(email, password) {
   return {
     types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
-    promise: (client) => client.post('/users/authenticate', { data: { email, password } })
+    promise: client => client.post('/users/authenticate', { data: { email, password } })
   };
 }
 

@@ -1,5 +1,5 @@
 const isEmpty = value => value === undefined || value === null || value === '';
-const join = (rules) => (value, data) => rules.map(rule => rule(value, data)).filter(error => !!error)[0];
+const join = rules => (value, data) => rules.map(rule => rule(value, data)).filter(error => !!error)[0];
 
 export function email(value) {
   // Let's not start a debate on email regex. This is just for an example app!
@@ -17,7 +17,7 @@ export function required(value) {
 }
 
 export function minLength(min) {
-  return value => {
+  return (value) => {
     if (!isEmpty(value) && value.length < min) {
       return `Must be at least ${min} characters`;
     }
@@ -26,7 +26,7 @@ export function minLength(min) {
 }
 
 export function maxLength(max) {
-  return value => {
+  return (value) => {
     if (!isEmpty(value) && value.length > max) {
       return `Must be no more than ${max} characters`;
     }
@@ -42,8 +42,8 @@ export function integer(value) {
 }
 
 export function oneOf(enumeration) {
-  return value => {
-    if (!~enumeration.indexOf(value)) {
+  return (value) => {
+    if (enumeration.indexOf(value) < 0) {
       return `Must be one of: ${enumeration.join(', ')}`;
     }
     return null;

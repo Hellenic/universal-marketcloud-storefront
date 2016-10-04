@@ -3,11 +3,11 @@ import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import RaisedButton from 'material-ui/RaisedButton';
-import { Notification } from 'components';
-import TextInput from './TextInput';
 
-import registrationValidation from './registrationValidation';
+import { Notification } from 'components';
 import * as registerActions from 'redux/modules/register';
+import registrationValidation from './registrationValidation';
+import TextInput from './TextInput';
 
 @connect(state => ({ errorState: state.register }),
   dispatch => bindActionCreators(registerActions, dispatch)
@@ -20,14 +20,14 @@ import * as registerActions from 'redux/modules/register';
 export default class RegistrationForm extends Component {
   static propTypes = {
     errorState: PropTypes.object,
-    active: PropTypes.string,
-    fields: PropTypes.object.isRequired,
-    dirty: PropTypes.bool.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     resetForm: PropTypes.func.isRequired,
-    invalid: PropTypes.bool.isRequired,
-    pristine: PropTypes.bool.isRequired,
-    valid: PropTypes.bool.isRequired
+    fields: PropTypes.object.isRequired,
+    // active: PropTypes.string,
+    // dirty: PropTypes.bool.isRequired,
+    // invalid: PropTypes.bool.isRequired,
+    // pristine: PropTypes.bool.isRequired,
+    // valid: PropTypes.bool.isRequired
   }
 
   render() {

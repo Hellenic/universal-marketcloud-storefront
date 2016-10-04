@@ -1,15 +1,11 @@
 import Express from 'express';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
-import config from './config';
 import favicon from 'serve-favicon';
 import compression from 'compression';
 import proxy from 'express-http-proxy';
 import helmet from 'helmet';
 import path from 'path';
-import createStore from './redux/create';
-import ApiClient from './helpers/ApiClient';
-import Html from './helpers/Html';
 import PrettyError from 'pretty-error';
 import http from 'http';
 
@@ -18,6 +14,11 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect, loadOnServer } from 'redux-connect';
 import createHistory from 'react-router/lib/createMemoryHistory';
 import { Provider } from 'react-redux';
+
+import config from './config';
+import createStore from './redux/create';
+import ApiClient from './helpers/ApiClient';
+import Html from './helpers/Html';
 import getRoutes from './routes';
 
 const pretty = new PrettyError();

@@ -5,7 +5,7 @@ import { LandingBanner, ProductFilters, ProductGrid } from 'components';
 import Helmet from 'react-helmet';
 
 @asyncConnect([{
-  promise: ({ store: { dispatch, getState } }) => { // eslint-disable-line react/prop-types
+  promise: ({ store: { dispatch, getState } }) => {
     const promises = [];
     if (!isProductsLoaded(getState())) {
       promises.push(dispatch(loadProducts()));

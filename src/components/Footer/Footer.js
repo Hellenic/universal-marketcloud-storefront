@@ -9,7 +9,7 @@ const Footer = () => {
     <div className={styles.container} style={{ backgroundColor: palette.accent3Color }}>
       <Subheader>Footer</Subheader>
       <div>
-        Have questions? Ask for help <a href="https://github.com/hellenic/universal-marketcloud-storefront/issues" target="_blank">on Github</a>.
+        Have questions? Ask for help <a href="https://github.com/hellenic/universal-marketcloud-storefront/issues" target="_blank" rel="noopener noreferrer">on Github</a>.
       </div>
     </div>
   );

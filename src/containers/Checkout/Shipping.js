@@ -5,15 +5,13 @@ import { Header, Container, CheckoutSteps, CheckoutNavigation, ShippingMethods }
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { load } from 'redux/modules/shipping';
-import { display as displaySnack } from 'redux/modules/snackbar';
 
-@connect(state => ({ methods: state.shipping.methods }), { push, loadMethods: load, displaySnack })
+@connect(state => ({ methods: state.shipping.methods }), { push, loadMethods: load })
 export default class Shipping extends Component {
   static propTypes = {
     push: PropTypes.func.isRequired,
     methods: PropTypes.array,
-    loadMethods: PropTypes.func.isRequired,
-    displaySnack: PropTypes.func.isRequired
+    loadMethods: PropTypes.func.isRequired
   }
 
   constructor(props) {

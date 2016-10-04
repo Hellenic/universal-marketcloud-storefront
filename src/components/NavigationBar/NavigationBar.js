@@ -93,7 +93,8 @@ export default class NavigationBar extends Component {
           title={<span className={styles.header}>{config.app.title}</span>}
           onTitleTouchTap={() => this.props.pushState('/')}
           iconElementLeft={<IconButton onTouchTap={open}><NavigationMenu /></IconButton>}
-          iconElementRight={this.renderActions()} />
+          iconElementRight={this.renderActions()}
+        />
 
         <Drawer docked={false} open={isOpen} onRequestChange={set}>
           <MenuItem leftIcon={<Home />} onTouchTap={() => this.goto('/')} primaryText="Home" />
@@ -107,7 +108,7 @@ export default class NavigationBar extends Component {
           {!auth && <MenuItem leftIcon={<Person />} onTouchTap={() => this.goto('/register')} primaryText="Register" />}
           {/* If logged in */}
           {auth && <MenuItem leftIcon={<Person />} onTouchTap={() => this.goto('/account')} primaryText="Account" />}
-          {auth && <MenuItem leftIcon={<Person />} onTouchTap={(event) => this.logout(event)} primaryText="Logout" />}
+          {auth && <MenuItem leftIcon={<Person />} onTouchTap={event => this.logout(event)} primaryText="Logout" />}
         </Drawer>
       </div>
     );

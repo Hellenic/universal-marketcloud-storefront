@@ -39,7 +39,7 @@ I am planning to build a real webshop at some point, but since the idea was stil
 
 In other words, this is kind of a boilerplate if you ever feel like building a stunning webshop of your own. It will offer huge variety of features what most, even the biggest, eCommerce storefronts won't offer, like super-fast and consistent user experience. Boilerplate is using Marketcloud, so if you are using that as well, you can get started very quickly. If not, then you'll just need to change all the API bindings and the logics related to it.
 
-This project is based on awesome [react-redux-universal](https://github.com/Hellenic/universal-marketcloud-storefront) boilerplate by [@erikras](https://twitter.com/erikras). You can read from there what's actually contained in this project as well.
+This project is based on awesome [react-redux-universal](https://github.com/erikras/react-redux-universal-hot-example) boilerplate by [@erikras](https://twitter.com/erikras). You can read from there what's actually contained in this project as well.
 
 ## Installation
 

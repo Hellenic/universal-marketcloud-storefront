@@ -64,7 +64,7 @@ export function add(productId, quantity = 1, cartId = '') {
   const operation = (cartId) ? 'update' : 'add';
   return {
     types: [ADD, ADD_SUCCESS, ADD_FAIL],
-    promise: (client) => client[method](`/carts/${cartId}`, {
+    promise: client => client[method](`/carts/${cartId}`, {
       data: {
         op: operation,
         items: [{ product_id: productId, quantity }]
@@ -76,7 +76,7 @@ export function add(productId, quantity = 1, cartId = '') {
 export function remove(productId, cartId = '') {
   return {
     types: [REMOVE, REMOVE_SUCCESS, REMOVE_FAIL],
-    promise: (client) => client.patch(`/carts/${cartId}`, {
+    promise: client => client.patch(`/carts/${cartId}`, {
       data: {
         op: 'remove',
         items: [{ product_id: productId }]

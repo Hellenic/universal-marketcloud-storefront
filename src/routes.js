@@ -1,6 +1,5 @@
 import React from 'react';
 import { IndexRoute, Route } from 'react-router';
-
 import {
     App,
     Home,
@@ -18,6 +17,7 @@ import {
     Payment,
     Confirmation
   } from 'containers';
+
 export default (store) => {
   const requireLogin = (nextState, replace, cb) => {
     const { auth: { user } } = store.getState();

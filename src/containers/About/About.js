@@ -20,12 +20,12 @@ export default class About extends Component {
         <Header title="About Us" />
 
         <Container>
-          <p>This project was originally created by Hannu Kärkkäinen (<a href="https://twitter.com/hkarkk" target="_blank">@hkarkk</a>).</p>
+          <p>This project was originally created by Hannu Kärkkäinen (<a href="https://twitter.com/hkarkk" target="_blank" rel="noopener noreferrer">@hkarkk</a>).</p>
           <p>
             Project is based on
-            awesome <a href="https://github.com/erikras/react-redux-universal-hot-example" target="_blank">react-redux-universal</a> boilerplate
-            by <a href="https://twitter.com/erikras" target="_blank">@erikras</a>.
-            You can read from there what's actually contained in this project as well.
+            awesome <a href="https://github.com/erikras/react-redux-universal-hot-example" target="_blank" rel="noopener noreferrer">react-redux-universal</a> boilerplate
+            by <a href="https://twitter.com/erikras" target="_blank" rel="noopener noreferrer">@erikras</a>.
+            You can read from there what&apos;s actually contained in this project as well.
           </p>
 
           <Subheader>Kitten</Subheader>
