@@ -46,7 +46,7 @@ export default class CartItems extends Component {
                 </TableRowColumn>
                 <TableRowColumn>{Math.round((item.price * item.quantity) * 100) / 100}</TableRowColumn>
                 <TableRowColumn>
-                  <FlatButton icon={<ActionDelete />} linkButton secondary onTouchTap={() => onRemove(item)} />
+                  <FlatButton icon={<ActionDelete />} secondary onTouchTap={() => onRemove(item)} />
                 </TableRowColumn>
               </TableRow>
             ))

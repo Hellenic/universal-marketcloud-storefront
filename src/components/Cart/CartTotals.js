@@ -8,16 +8,16 @@ export default class CartTotals extends Component {
 
   render() {
     const { cart } = this.props;
-    const subtotal = cart.items.reduce((a, b) => (a.quantity * a.price) + (b.quantity * b.price));
+    const subtotal = (cart.items.length > 1) ? cart.items.reduce((a, b) => (a.quantity * a.price) + (b.quantity * b.price)) : (cart.items[0].quantity * cart.items[0].price);
     const shipping = '0,00';
     const payment = '0,00';
     const total = subtotal;
     return (
       <div>
         <Subheader>Totals</Subheader>
-        <strong>Subtotal</strong> {subtotal}<br />
-        <strong>Shipping</strong> {shipping}<br />
-        <strong>Payment</strong> {payment}<br />
+        <p><strong>Subtotal</strong> {subtotal}</p>
+        <p><strong>Shipping</strong> {shipping}</p>
+        <p><strong>Payment</strong> {payment}</p>
         <strong>Total {total}</strong>
       </div>
     );
