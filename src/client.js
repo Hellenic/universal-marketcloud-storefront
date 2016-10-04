@@ -10,7 +10,7 @@ import { Provider } from 'react-redux';
 import { applyRouterMiddleware, browserHistory, Router } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-connect';
-import useScroll from 'react-router-scroll';
+import { useScroll } from 'react-router-scroll';
 
 import getRoutes from './routes';
 
