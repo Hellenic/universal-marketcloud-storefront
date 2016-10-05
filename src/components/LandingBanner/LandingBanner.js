@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import Web from 'material-ui/svg-icons/av/web';
+import { FormattedMessage } from 'react-intl';
 
 import config from '../../config';
 import styles from './LandingBanner.scss';
@@ -18,7 +19,9 @@ export default class LandingBanner extends Component {
           <img src={logoImage} alt={config.app.title} />
         </div>
         <h1 className={styles.header} style={{ color: palette.alternateTextColor }}>{config.app.title}</h1>
-        <h2 className={styles.subheader} style={{ color: palette.alternateTextColor }}>{config.app.description}</h2>
+        <h2 className={styles.subheader} style={{ color: palette.alternateTextColor }}>
+          <FormattedMessage id="header.tagline" defaultMessage={config.app.description} />
+        </h2>
 
         <FlatButton
           label="View on Github"

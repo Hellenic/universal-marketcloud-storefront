@@ -5,6 +5,7 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { IntlProvider } from 'react-intl-redux';
 import { applyRouterMiddleware, browserHistory, Router } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-connect';
@@ -32,7 +33,9 @@ const component = (
 
 ReactDOM.render(
   <Provider store={store} key="provider">
-    {component}
+    <IntlProvider>
+      {component}
+    </IntlProvider>
   </Provider>,
   dest
 );
@@ -49,10 +52,12 @@ if (__DEVTOOLS__ && !window.devToolsExtension) {
   const DevTools = require('./containers/DevTools/DevTools');
   ReactDOM.render(
     <Provider store={store} key="provider">
-      <div>
-        {component}
-        <DevTools />
-      </div>
+      <IntlProvider>
+        <div>
+          {component}
+          <DevTools />
+        </div>
+      </IntlProvider>
     </Provider>,
     dest
   );

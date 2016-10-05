@@ -4,6 +4,7 @@ import { routerReducer } from 'react-router-redux';
 import { reducer as reduxAsyncConnect } from 'redux-connect';
 
 import { reducer as form } from 'redux-form';
+import { intlReducer } from 'react-intl-redux';
 import auth from './auth';
 import blog from './blog';
 import cart from './cart';
@@ -17,6 +18,7 @@ import snackbar from './snackbar';
 export default combineReducers({
   routing: routerReducer,
   reduxAsyncConnect,
+  intl: intlReducer,
   auth,
   blog,
   cart,

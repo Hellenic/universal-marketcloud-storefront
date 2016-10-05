@@ -2,9 +2,12 @@ import { createStore as _createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import * as storage from 'redux-storage';
 import createEngine from 'redux-storage-engine-localstorage';
+import { addLocaleData } from 'react-intl';
+import itLocaleData from 'react-intl/locale-data/it';
 import createMiddleware from './middleware/clientMiddleware';
 
-export default function createStore(history, client, data) {
+const initialState = {};
+export default function createStore(history, client, data = initialState) {
   // Sync dispatched route actions to the history
   const reduxRouterMiddleware = routerMiddleware(history);
   const engine = createEngine('marketcloud-storefront');
@@ -39,6 +42,10 @@ export default function createStore(history, client, data) {
       store.replaceReducer(require('./modules/reducer'));
     });
   }
+
+  addLocaleData([
+    ...itLocaleData
+  ]);
 
   return store;
 }

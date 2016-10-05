@@ -4,10 +4,12 @@ import { push } from 'react-router-redux';
 import { logout } from 'redux/modules/auth';
 import { open, close, set } from 'redux/modules/drawer';
 import { display as displaySnack } from 'redux/modules/snackbar';
+import { updateIntl } from 'react-intl-redux';
 
 import AppBar from 'material-ui/AppBar';
 // import Badge from 'material-ui/Badge';
 import IconButton from 'material-ui/IconButton';
+import FlatButton from 'material-ui/FlatButton';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
@@ -23,11 +25,12 @@ import Business from 'material-ui/svg-icons/communication/business';
 
 import config from '../../config';
 import theme from '../../theme/mui-theme';
+import itMessages from '../../i18n/it-messages.json';
 import styles from './NavigationBar.scss';
 
 // TODO It might be wise to further separate session handling from the navigation.
 // TODO This component need a lot of splitting up
-@connect(state => ({ auth: state.auth.user, isOpen: state.drawer.open }), { pushState: push, logout, open, close, set, displaySnack })
+@connect(state => ({ auth: state.auth.user, isOpen: state.drawer.open }), { pushState: push, logout, open, close, set, displaySnack, updateIntl })
 export default class NavigationBar extends Component {
   static propTypes = {
     auth: PropTypes.object,
@@ -37,7 +40,8 @@ export default class NavigationBar extends Component {
     set: PropTypes.func.isRequired,
     displaySnack: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
-    pushState: PropTypes.func.isRequired
+    pushState: PropTypes.func.isRequired,
+    updateIntl: PropTypes.func.isRequired
   }
 
   // Display Snackbar and redirect on login / logout
@@ -69,6 +73,8 @@ export default class NavigationBar extends Component {
     const { auth } = this.props;
     return (
       <div>
+        <FlatButton label="EN" onTouchTap={() => this.props.updateIntl({ locale: 'en' })} />
+        <FlatButton label="IT" onTouchTap={() => this.props.updateIntl({ locale: 'it', messages: itMessages })} />
         <IconButton onTouchTap={() => this.goto(auth ? '/account' : '/login')}>
           <Person color={theme.palette.accent2Color} />
         </IconButton>

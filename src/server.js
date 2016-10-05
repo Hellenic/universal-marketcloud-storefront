@@ -14,7 +14,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect, loadOnServer } from 'redux-connect';
 import createHistory from 'react-router/lib/createMemoryHistory';
 import { Provider } from 'react-redux';
-
+import { IntlProvider } from 'react-intl-redux';
 import config from './config';
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
@@ -68,7 +68,9 @@ app.use((req, res) => {
       loadOnServer({ ...renderProps, store, helpers: { client } }).then(() => {
         const component = (
           <Provider store={store} key="provider">
-            <ReduxAsyncConnect {...renderProps} />
+            <IntlProvider>
+              <ReduxAsyncConnect {...renderProps} />
+            </IntlProvider>
           </Provider>
         );
 

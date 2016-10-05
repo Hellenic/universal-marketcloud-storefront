@@ -107,6 +107,7 @@
     "react-helmet": "^3.1.0",
     "react-inline-css": "^2.0.0",
     "react-intl": "^2.1.5",
+    "react-intl-redux": "^0.1.0",
     "react-redux": "^4.0.0",
     "react-router": "^2.4.0",
     "react-router-redux": "^4.0.0",
