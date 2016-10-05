@@ -25,7 +25,7 @@ import Business from 'material-ui/svg-icons/communication/business';
 
 import config from '../../config';
 import theme from '../../theme/mui-theme';
-import itMessages from '../../i18n/it-messages.json';
+import itMessages from '../../i18n/it-messages';
 import styles from './NavigationBar.scss';
 
 // TODO It might be wise to further separate session handling from the navigation.
